@@ -1,51 +1,56 @@
 import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { PerspectiveCamera } from '@react-three/drei'
+import { PerspectiveCamera, Stars } from '@react-three/drei'
 import CanvasLoader from '../components/CanvasLoader'
-import { Leva, useControls } from 'leva'
+// import { Leva, useControls } from 'leva'
 import ForestHouse from '../components/ForestHouse'
 import { useMediaQuery } from 'react-responsive'
 import { calculateSizes } from '../constants'
+import Target from '../components/Target'
+import Plumbob from '../components/Plumbob'
+import Pokeball from '../components/ Pokeball'
+import Campfire from '../components/Campfire'
+import ReactLogo from '../components/React'
 
 
 const Hero = () => {
-    const x = useControls('PokemonRoom',{
-        positionX:{
-            value: -146,
-            min:-300,
-            max:50
-        },
-        positionY:{
-            value: 38,
-            min:-50,
-            max:50
-        },
-        positionZ:{
-            value: -7,
-            min:-50,
-            max:50
-        },
-        rotationX:{
-            value: -7,
-            min:-10,
-            max:10
-        },
-        rotationY:{
-            value: -1.6,
-            min:-10,
-            max:10
-        },
-        rotationZ:{
-            value: -7,
-            min:-10,
-            max:10
-        },
-        scale:{
-            value: 1,
-            min:0.00000001,
-            max:10
-        },
-    })
+    // const x = useControls('PokemonRoom',{
+    //     positionX:{
+    //         value: 2.6,
+    //         min:-10,
+    //         max:50
+    //     },
+    //     positionY:{
+    //         value: -21,
+    //         min:-50,
+    //         max:50
+    //     },
+    //     positionZ:{
+    //         value: -67,
+    //         min:-67,
+    //         max:50
+    //     },
+    //     rotationX:{
+    //         value: 0,
+    //         min:-10,
+    //         max:10
+    //     },
+    //     rotationY:{
+    //         value: Math.PI/2,
+    //         min:-10,
+    //         max:10
+    //     },
+    //     rotationZ:{
+    //         value: 0,
+    //         min:-10,
+    //         max:10
+    //     },
+    //     scale:{
+    //         value: 0.6,
+    //         min:0.00000001,
+    //         max:10
+    //     },
+    // })
     const isMobile = useMediaQuery({maxWidth: 768})
     const isTablet = useMediaQuery({minWidth: 768, maxWidth: 1024})
     const isSmall = useMediaQuery({maxWidth: 440})
@@ -60,11 +65,29 @@ const Hero = () => {
             </p>
         </div>
         <div className='w-full h-full absolute inset-0'>
-            <Leva />
             <Canvas className='w-full h-full'>
                 <Suspense fallback={<CanvasLoader />}>
-                <PerspectiveCamera makeDefault position={sizes.housePosition} rotation={[-7, -1.6,-7]} scale={sizes.houseScale} />
-                <ForestHouse />
+                <PerspectiveCamera makeDefault position={[0,0,20]} />
+                <group renderOrder={-1}>
+                <Stars 
+                radius={700}  // Increase radius to spread stars further out
+                depth={500}   // Increase depth for a deeper starfield
+                count={10000} // Increase number of stars
+                factor={50}   // Increase factor to make stars larger
+                saturation={0} // Keep stars white
+                fade// Push stars into the background
+                />
+                </group>
+                <Campfire position = {sizes.housePosition} rotation={[0,-Math.PI/3,0]} scale={sizes.houseScale}/>
+                <group>
+                    <Pokeball position={sizes.targetPosition} />
+                </group>
+                <group>
+                    <Plumbob position={sizes.cubePosition} scale={0.004}/>
+                    <ReactLogo position = {sizes.reactLogoPosition} />
+                </group>
+                <ambientLight intensity={1} />
+                <directionalLight position={[10,10,10]} />
                 </Suspense>
             </Canvas>
         </div>

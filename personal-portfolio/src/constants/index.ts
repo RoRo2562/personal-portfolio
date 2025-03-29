@@ -248,12 +248,12 @@ export const navLinks = [
   
   export const calculateSizes = (isSmall, isMobile, isTablet) => {
     return {
-      houseScale: isSmall ? 1 : isMobile ? 1 : 1,
-      housePosition: isMobile ? [-190, 20, -9] : [-146, 38, -8],
+      houseScale: isSmall ? 0.4 : isMobile ? 1 : 1,
+      housePosition: isMobile ? [2.6, -4, -7] : [0, -4, -6],
       cubePosition: isSmall ? [4, -5, 0] : isMobile ? [5, -5, 0] : isTablet ? [5, -5, 0] : [9, -5.5, 0],
       reactLogoPosition: isSmall ? [3, 4, 0] : isMobile ? [5, 4, 0] : isTablet ? [5, 4, 0] : [12, 3, 0],
       ringPosition: isSmall ? [-5, 7, 0] : isMobile ? [-10, 10, 0] : isTablet ? [-12, 10, 0] : [-24, 10, 0],
-      targetPosition: isSmall ? [-5, -10, -10] : isMobile ? [-9, -10, -10] : isTablet ? [-11, -7, -10] : [-13, -13, -10],
+      targetPosition: isSmall ? [-5, -10, -10] : isMobile ? [-9, -10, -10] : isTablet ? [-11, 0, -10] : [-13, 10, -10],
     };
   };
   

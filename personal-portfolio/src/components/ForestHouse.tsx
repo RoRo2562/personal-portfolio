@@ -10,7 +10,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 const ForestHouse = (props) => {
-  const { nodes, materials } = useGLTF('assets/models/forest_house.glb')
+  const { nodes, materials } = useGLTF('models/forest_house.glb')
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.08}>
@@ -563,4 +563,4 @@ const ForestHouse = (props) => {
 
 export default ForestHouse;
 
-useGLTF.preload('assets/models/forest_house.glb')
+useGLTF.preload('models/forest_house.glb')

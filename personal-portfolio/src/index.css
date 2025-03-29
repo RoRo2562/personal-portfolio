@@ -5,6 +5,15 @@
 
 body {
   background: #0d1321; /* Fallback color */
+  /* height: 30vh;
+  width: 100%;
+
+  align-items: center;
+  background-image: url('assets/nightsky.jpg');
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; */
 }
 
 .waving-hand {
@@ -41,3 +50,10 @@ body {
     transform: rotate(0deg);
   }
 }
+
+/* @for $i from 1 through $n{
+  $v: random(90) + 9;
+  $h: random(250) + 50;
+  $d: calc(random(300)/10 + 3);
+} */
+
