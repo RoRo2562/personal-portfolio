@@ -6,29 +6,50 @@ Source: https://sketchfab.com/3d-models/3d-github-logo-441d03d1076b44f483df551e0
 Title: 3D Github Logo
 */
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef, useState } from 'react'
+import { Float, useGLTF } from '@react-three/drei'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF('/scene.gltf')
+const GithubLogo = (props) => {
+  const { nodes, materials } = useGLTF('/models/github_logo.glb')
+  const logoRef = useRef();
+  const [hovered,setHovered] = useState(false)
+
+//   useGSAP(() =>{
+//     gsap.timeline({
+//         repeat:-1,
+//         repeatDelay:0.5,
+//     }).to(logoRef.current.rotation,{
+//         y:hovered? '+=2' : `+=${Math.PI *2}`,
+//         x:hovered? '+=2' : `-=${Math.PI *2}`,
+//         duration: 2.5,
+//         stagger: {
+//             each: 0.15,
+//         }
+//     })
+//   })
   return (
-    <group {...props} dispose={null}>
-      <group position={[-0.055, 2.945, 6.336]} rotation={[Math.PI / 2, 0, 0]} scale={28.364}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_4.geometry}
-          material={materials.glossy_putih}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_5.geometry}
-          material={materials.github}
-        />
-      </group>
-    </group>
+        <Float floatIntensity={1}>
+            <group {...props} dispose={null}>
+            <group position={[-0.055, 2.945, 6.336]} rotation={[Math.PI / 2, 0, 0]} scale={26}>
+                <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Object_4.geometry}
+                material={materials.glossy_putih}
+                />
+                <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Object_5.geometry}
+                material={materials.github}
+                />
+            </group>
+            </group>
+    </Float>
   )
 }
+export default GithubLogo
 
-useGLTF.preload('/scene.gltf')
+useGLTF.preload('/models/github_logo.glb')

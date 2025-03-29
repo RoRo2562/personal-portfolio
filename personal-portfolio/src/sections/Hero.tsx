@@ -11,6 +11,10 @@ import Plumbob from '../components/Plumbob'
 import Pokeball from '../components/ Pokeball'
 import Campfire from '../components/Campfire'
 import ReactLogo from '../components/React'
+import GithubLogo from '../components/Github'
+import PythonLogo from '../components/Python'
+import HeroCamera from '../components/HeroCamera'
+import Button from '../components/Button'
 
 
 const Hero = () => {
@@ -57,6 +61,12 @@ const Hero = () => {
 
     const sizes = calculateSizes(isSmall,isMobile,isTablet);
   return (
+    <div>
+    <div className='absolute bottom-7 left-0 right-0 w-full z-10 c-space'>
+            <a href="#contact" className='w-fit'>
+                <Button name="Let's work together" isBeam />
+            </a>
+        </div>
     <section className='min-h-screen w-full flex-col relative'>
         <div className='w-full mx-auto flex flex-col sm:mt-36 mt-20 c-space gap-3'>
             <p className='sm:text-3xl text-2xl font-medium text-white text-center font-generalsans'>Hey there, I am Rohan <span className='waving-hand'>👋</span></p>
@@ -77,14 +87,17 @@ const Hero = () => {
                 saturation={0} // Keep stars white
                 fade// Push stars into the background
                 />
+                
                 </group>
+                <HeroCamera isMobile = {isMobile}>
                 <Campfire position = {sizes.housePosition} rotation={[0,-Math.PI/3,0]} scale={sizes.houseScale}/>
+                </HeroCamera>
                 <group>
-                    <Pokeball position={sizes.targetPosition} />
+                    <PythonLogo position={sizes.targetPosition} scale={0.035} />
                 </group>
                 <group>
-                    <Plumbob position={sizes.cubePosition} scale={0.004}/>
                     <ReactLogo position = {sizes.reactLogoPosition} />
+                    <GithubLogo position = {sizes.githubPosition} scale={0.7} />
                 </group>
                 <ambientLight intensity={1} />
                 <directionalLight position={[10,10,10]} />
@@ -93,6 +106,7 @@ const Hero = () => {
         </div>
 
     </section>
+    </div>
   )
 }
 
