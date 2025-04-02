@@ -12,7 +12,7 @@ import { Float, useGLTF } from '@react-three/drei'
 const PythonLogo = (props) => {
   const { nodes, materials } = useGLTF('/models/python_logo.glb')
   return (
-    <Float floatIntensity={1}>
+    <Float floatIntensity={0.5}>
       <group {...props} dispose={null}>
         <group scale={0.01}>
           <mesh

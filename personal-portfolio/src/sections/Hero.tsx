@@ -17,6 +17,7 @@ import HeroCamera from '../components/HeroCamera'
 import Button from '../components/Button'
 
 
+
 const Hero = () => {
     // const x = useControls('PokemonRoom',{
     //     positionX:{
@@ -62,13 +63,13 @@ const Hero = () => {
     const sizes = calculateSizes(isSmall,isMobile,isTablet);
   return (
     <div>
-    <div className='absolute bottom-7 left-0 right-0 w-full z-10 c-space'>
+    <div className='absolute bottom-7 left-0 right-0 w-full z-10 sm:px-10 px-5'>
             <a href="#contact" className='w-fit'>
-                <Button name="Let's work together" isBeam />
+                <Button name="Let's work together" isBeam containerClass='sm:w-fit w-full sm:min-w-96'/>
             </a>
         </div>
     <section className='min-h-screen w-full flex-col relative'>
-        <div className='w-full mx-auto flex flex-col sm:mt-36 mt-20 c-space gap-3'>
+        <div className='w-full mx-auto flex flex-col sm:mt-36 mt-20 sm:px-10 px-5 gap-3'>
             <p className='sm:text-3xl text-2xl font-medium text-white text-center font-generalsans'>Hey there, I am Rohan <span className='waving-hand'>👋</span></p>
             <p className='text-center xl:text-6xl md:text-5xl sm:text-4xl text-3xl font-generalsans font-black !leading-normal bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] to-100% bg-clip-text text-transparent'>
                 Always Innovating

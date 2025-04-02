@@ -58,10 +58,10 @@ export const navLinks = [
   
   export const myProjects = [
     {
-      title: 'Podcastr - AI Podcast Platform',
-      desc: 'Podcastr is a revolutionary Software-as-a-Service platform that transforms the way podcasts are created. With advanced AI-powered features like text-to-multiple-voices functionality, it allows creators to generate diverse voiceovers from a single text input.',
+      title: 'FitHub - IOS Fitness Planner',
+      desc: 'FitHub is a full-featured iOS app built with Swift and SwiftUI, allowing users to track their nutrition and create custom workout plans.',
       subdesc:
-        'Built as a unique Software-as-a-Service app with Next.js 14, Tailwind CSS, TypeScript, Framer Motion and Convex, Podcastr is designed for optimal performance and scalability.',
+        'FitHub integrates Firebase for user authentication and real-time data storage, leveraging a Nutrition API and Exercises API to provide accurate meal tracking and personalized workout recommendations. Optimized Core Data queries reduced app load times by 40%, ensuring a smooth and responsive user experience.',
       href: 'https://www.youtube.com/watch?v=zfAb95tJvZQ',
       texture: '/textures/project/project1.mp4',
       logo: '/assets/project-logo1.png',
@@ -74,13 +74,13 @@ export const navLinks = [
       tags: [
         {
           id: 1,
-          name: 'React.js',
-          path: '/assets/react.svg',
+          name: 'Swift UI',
+          path: '/assets/swift.png',
         },
         {
           id: 2,
-          name: 'TailwindCSS',
-          path: 'assets/tailwindcss.png',
+          name: 'Firebase',
+          path: 'assets/firebase.svg',
         },
         {
           id: 3,
@@ -260,18 +260,18 @@ export const navLinks = [
   export const workExperiences = [
     {
       id: 1,
-      name: 'Framer',
-      pos: 'Lead Web Developer',
-      duration: '2022 - Present',
+      name: 'GRC Ready',
+      pos: 'Full Stack Software Engineer',
+      duration: 'Oct 2024 - Present',
       title: "Framer serves as my go-to tool for creating interactive prototypes. I use it to bring designs to  life, allowing stakeholders to experience the user flow and interactions before development.",
       icon: '/assets/framer.svg',
       animation: 'victory',
     },
     {
       id: 2,
-      name: 'Figma',
-      pos: 'Web Developer',
-      duration: '2020 - 2022',
+      name: 'Australasia Polytechnic',
+      pos: 'Software Developer Intern (Academic Integrity)',
+      duration: 'Sep 2024 - Dec 2024',
       title: "Figma is my collaborative design platform of choice. I utilize it to work seamlessly with team members and clients, facilitating real-time feedback and design iterations. Its cloud-based.",
       icon: '/assets/figma.svg',
       animation: 'clapping',
@@ -286,3 +286,202 @@ export const navLinks = [
       animation: 'salute',
     },
   ];
+
+  
+  
+  const services = [
+    {
+      title: "Web Developer",
+      icon: 'web',
+    },
+    {
+      title: "React Native Developer",
+      icon: 'mobile',
+    },
+    {
+      title: "Backend Developer",
+      icon: 'backend',
+    },
+    {
+      title: "Content Creator",
+      icon: 'creator',
+    },
+  ];
+  
+  const technologies = [
+    {
+      name: "HTML 5",
+      icon: 'html',
+    },
+    {
+      name: "CSS 3",
+      icon: 'css',
+    },
+    {
+      name: "JavaScript",
+      icon: 'javascript',
+    },
+    {
+      name: "TypeScript",
+      icon: 'typescript',
+    },
+    {
+      name: "React JS",
+      icon: 'reactjs',
+    },
+    {
+      name: "Redux Toolkit",
+      icon: 'redux',
+    },
+    {
+      name: "Tailwind CSS",
+      icon: 'tailwind',
+    },
+    {
+      name: "Node JS",
+      icon: 'nodejs',
+    },
+    {
+      name: "MongoDB",
+      icon: 'mongodb',
+    },
+    {
+      name: "Three JS",
+      icon: 'threejs',
+    },
+    {
+      name: "git",
+      icon: 'git',
+    },
+    {
+      name: "figma",
+      icon: 'figma',
+    },
+    {
+      name: "docker",
+      icon: 'docker',
+    },
+  ];
+  
+  const experiences = [    
+    {
+      title: "Full Stack Software Engineer",
+      company_name: "GRC Ready",
+      icon: 'assets/grc_ready.png',
+      iconBg: "#383E56",
+      date: "Oct 2024 - Present",
+      points: [
+        "Designed and optimised a modular, full-stack web application (React, MongoDB), improving query efficiency by approx. 30% and reducing website load times by an estimated 20% through indexing and optimising API calls.",
+        "Led team of 3 developers, streamlining workflows (GitHub CI/CD pipelines); boosted deployment efficiency by ~25%.",
+        "Improved system reliability/scalability by optimising back-end (efficient indexing, reducing API response times."
+
+      ],
+    },
+    {
+      title: "Software Developer Intern (Academic Integrity)",
+      company_name: "Australasia Polytechnic",
+      icon: 'assets/aa_poly.png',
+      iconBg: "#383E56",
+      date: "September 2024 - December 2024",
+      points: [
+        "Developed a Python/Django web app that automated warning letter generation, reducing processing time by ~100% and eliminating manual errors, improving workflow efficiency for 50+ cases per semester.",
+        "Designed and optimised an SQL database for student credit transfers, reducing manual approvals by ~30% and enhancing data integrity through indexing and normalisation."
+
+      ],
+    },
+
+  ];
+  
+  const testimonials = [
+    {
+      testimonial:
+        "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
+      name: "Sara Lee",
+      designation: "CFO",
+      company: "Acme Co",
+      image: "https://randomuser.me/api/portraits/women/4.jpg",
+    },
+    {
+      testimonial:
+        "I've never met a web developer who truly cares about their clients' success like Rick does.",
+      name: "Chris Brown",
+      designation: "COO",
+      company: "DEF Corp",
+      image: "https://randomuser.me/api/portraits/men/5.jpg",
+    },
+    {
+      testimonial:
+        "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
+      name: "Lisa Wang",
+      designation: "CTO",
+      company: "456 Enterprises",
+      image: "https://randomuser.me/api/portraits/women/6.jpg",
+    },
+  ];
+  
+  export const gridItems = [
+    {
+      id: 1,
+      title: "I prioritize client collaboration, fostering open communication ",
+      description: "",
+      className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
+      imgClassName: "w-full h-full",
+      titleClassName: "justify-end",
+      img: "/b1.svg",
+      spareImg: "",
+    },
+    {
+      id: 2,
+      title: "I'm very flexible with time zone communications",
+      description: "",
+      className: "lg:col-span-2 md:col-span-3 md:row-span-2",
+      imgClassName: "",
+      titleClassName: "justify-start",
+      img: "",
+      spareImg: "",
+    },
+    {
+      id: 3,
+      title: "My tech stack",
+      description: "I constantly try to improve",
+      className: "lg:col-span-2 md:col-span-3 md:row-span-2",
+      imgClassName: "",
+      titleClassName: "justify-center",
+      img: "",
+      spareImg: "",
+    },
+    {
+      id: 4,
+      title: "Tech enthusiast with a passion for development.",
+      description: "",
+      className: "lg:col-span-2 md:col-span-3 md:row-span-1",
+      imgClassName: "",
+      titleClassName: "justify-start",
+      img: "/grid.svg",
+      spareImg: "/b4.svg",
+    },
+  
+    {
+      id: 5,
+      title: "Currently building a JS Animation library",
+      description: "The Inside Scoop",
+      className: "md:col-span-3 md:row-span-2",
+      imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
+      titleClassName: "justify-center md:justify-start lg:justify-center",
+      img: "/b5.svg",
+      spareImg: "/grid.svg",
+    },
+    {
+      id: 6,
+      title: "Do you want to start a project together?",
+      description: "",
+      className: "lg:col-span-2 md:col-span-3 md:row-span-1",
+      imgClassName: "",
+      titleClassName: "justify-center md:max-w-full max-w-60 text-center",
+      img: "",
+      spareImg: "",
+    },
+  ];
+
+  
+  export { services, technologies, experiences, testimonials };
