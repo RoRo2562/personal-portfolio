@@ -34,7 +34,7 @@ const HouseCanvas = ({ scrollContainer }) => {
           setPosition([0.2, -0.5, 0]);
         } else {
           setScale([2, 2, 2]);
-          setPosition([0, 0, -1]);
+          setPosition([0, 0, -1.5]);
         }
       };
   

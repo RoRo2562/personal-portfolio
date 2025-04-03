@@ -6,7 +6,7 @@ import Card from '../components/Card'
 import { div } from 'framer-motion/client'
 import TechIcon from '../components/TechIcon'
 
-import GithubIcon from './github.svg';
+import GithubIcon from '/assets/github.svg';
 import CardHeader from '../components/CardHeader'
 import TechStackItem from '../components/TechStackItem'
 
@@ -54,33 +54,33 @@ const techStack = [
 ]
 
 const About = () => {
-    const [hasCopied, setHasCopied] = useState(false)
-    const globeRef = useRef<GlobeMethods | null>(null);
-    // Generate random arcs data
-    const arcsData = [...Array(10).keys()].map(() => ({
-        startLat: (Math.random() - 0.5) * 180,  // Random start latitude
-        startLng: (Math.random() - 0.5) * 360,  // Random start longitude
-        endLat: (Math.random() - 0.5) * 180,    // Random end latitude
-        endLng: (Math.random() - 0.5) * 360,    // Random end longitude
-        color: [
-            ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
-            ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
-        ],
-    }));
-    const handleCopy = () => {
-        navigator.clipboard.writeText('rohan.sivam2562@gmail.com')
-        setHasCopied(true)
-        setTimeout(() =>{
-            setHasCopied(false)
-        },2000)
-    }
-    useEffect(() => {
-        if (globeRef.current) {
-            const controls = globeRef.current.controls();
-            controls.autoRotate = true; 
-            controls.autoRotateSpeed = 0.8; // Adjust speed if needed
-        }
-    }, []);
+    // const [hasCopied, setHasCopied] = useState(false)
+    // const globeRef = useRef<GlobeMethods | null>(null);
+    // // Generate random arcs data
+    // const arcsData = [...Array(10).keys()].map(() => ({
+    //     startLat: (Math.random() - 0.5) * 180,  // Random start latitude
+    //     startLng: (Math.random() - 0.5) * 360,  // Random start longitude
+    //     endLat: (Math.random() - 0.5) * 180,    // Random end latitude
+    //     endLng: (Math.random() - 0.5) * 360,    // Random end longitude
+    //     color: [
+    //         ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
+    //         ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
+    //     ],
+    // }));
+    // const handleCopy = () => {
+    //     navigator.clipboard.writeText('rohan.sivam2562@gmail.com')
+    //     setHasCopied(true)
+    //     setTimeout(() =>{
+    //         setHasCopied(false)
+    //     },2000)
+    // }
+    // useEffect(() => {
+    //     if (globeRef.current) {
+    //         const controls = globeRef.current.controls();
+    //         controls.autoRotate = true; 
+    //         controls.autoRotateSpeed = 0.8; // Adjust speed if needed
+    //     }
+    // }, []);
 
   return (
     <section className='py-20'>

@@ -13,7 +13,7 @@ import React from 'react'
 import { Float, useGLTF } from '@react-three/drei'
 
 const Houser = (props) => {
-  const { nodes, materials } = useGLTF('/house.glb')
+  const { nodes, materials } = useGLTF('/models/house.glb')
   return (
     <Float floatIntensity={0.3}>
     <group {...props} dispose={null}>
@@ -27,6 +27,6 @@ const Houser = (props) => {
   )
 }
 
-useGLTF.preload('/house.glb')
+useGLTF.preload('/models/house.glb')
 
 export default Houser
