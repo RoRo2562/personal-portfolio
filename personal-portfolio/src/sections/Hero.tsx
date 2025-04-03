@@ -1,24 +1,9 @@
-import React, { Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { PerspectiveCamera, Stars } from '@react-three/drei'
-import CanvasLoader from '../components/CanvasLoader'
-// import { Leva, useControls } from 'leva'
-import ForestHouse from '../components/ForestHouse'
-import { useMediaQuery } from 'react-responsive'
-import { calculateSizes } from '../constants'
-import Target from '../components/Target'
-import Plumbob from '../components/Plumbob'
-import Pokeball from '../components/ Pokeball'
-import Campfire from '../components/Campfire'
-import ReactLogo from '../components/React'
-import GithubLogo from '../components/Github'
-import PythonLogo from '../components/Python'
-import HeroCamera from '../components/HeroCamera'
-import Button from '../components/Button'
+import Position from '../components/Position'
+import HouseCanvas from '../components/HouseCanvas'
 
 
 
-const Hero = () => {
+const Hero = ({scrollContainer}) => {
     // const x = useControls('PokemonRoom',{
     //     positionX:{
     //         value: 2.6,
@@ -56,58 +41,91 @@ const Hero = () => {
     //         max:10
     //     },
     // })
-    const isMobile = useMediaQuery({maxWidth: 768})
-    const isTablet = useMediaQuery({minWidth: 768, maxWidth: 1024})
-    const isSmall = useMediaQuery({maxWidth: 440})
+    // const isMobile = useMediaQuery({maxWidth: 768})
+    // const isTablet = useMediaQuery({minWidth: 768, maxWidth: 1024})
+    // const isSmall = useMediaQuery({maxWidth: 440})
 
-    const sizes = calculateSizes(isSmall,isMobile,isTablet);
+    // const sizes = calculateSizes(isSmall,isMobile,isTablet);
   return (
-    <div>
-    <div className='absolute bottom-7 left-0 right-0 w-full z-10 sm:px-10 px-5'>
-            <a href="#contact" className='w-fit'>
-                <Button name="Let's work together" isBeam containerClass='sm:w-fit w-full sm:min-w-96'/>
-            </a>
-        </div>
-    <section className='min-h-screen w-full flex-col relative'>
-        <div className='w-full mx-auto flex flex-col sm:mt-36 mt-20 sm:px-10 px-5 gap-3'>
-            <p className='sm:text-3xl text-2xl font-medium text-white text-center font-generalsans'>Hey there, I am Rohan <span className='waving-hand'>👋</span></p>
-            <p className='text-center xl:text-6xl md:text-5xl sm:text-4xl text-3xl font-generalsans font-black !leading-normal bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] to-100% bg-clip-text text-transparent'>
-                Always Innovating
-            </p>
-        </div>
-        <div className='w-full h-full absolute inset-0'>
-            <Canvas className='w-full h-full'>
-                <Suspense fallback={<CanvasLoader />}>
-                <PerspectiveCamera makeDefault position={[0,0,20]} />
-                <group renderOrder={-1}>
-                <Stars 
-                radius={700}  // Increase radius to spread stars further out
-                depth={500}   // Increase depth for a deeper starfield
-                count={10000} // Increase number of stars
-                factor={50}   // Increase factor to make stars larger
-                saturation={0} // Keep stars white
-                fade// Push stars into the background
-                />
+    // <div>
+    // <div className='absolute bottom-7 left-0 right-0 w-full z-10 sm:px-10 px-5'>
+    //         <a href="#contact" className='w-fit'>
+    //             <Button name="Let's work together" isBeam containerClass='sm:w-fit w-full sm:min-w-96'/>
+    //         </a>
+    //     </div>
+    // <section className='min-h-screen w-full flex-col relative'>
+    //     <div className='w-full mx-auto flex flex-col sm:mt-36 mt-20 sm:px-10 px-5 gap-3'>
+    //         <p className='sm:text-3xl text-2xl font-medium text-white text-center font-generalsans'>Hey there, I am Rohan <span className='waving-hand'>👋</span></p>
+    //         <p className='text-center xl:text-6xl md:text-5xl sm:text-4xl text-3xl font-generalsans font-black !leading-normal bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] to-100% bg-clip-text text-transparent'>
+    //             Always Innovating
+    //         </p>
+    //     </div>
+    //     <img className="parallax__clouds1" src="./parallax/clouds_1.svg" alt="" />
+    //     <img className="parallax__clouds2" src="./parallax/clouds_2.svg" alt="" />
+    //     {/* <div className='w-full h-full absolute inset-0'>
+    //         <Canvas className='w-full h-full'>
+    //             <Suspense fallback={<CanvasLoader />}>
+    //             <PerspectiveCamera makeDefault position={[0,0,20]} />
+    //             <group renderOrder={-1}>
+    //             <Stars 
+    //             radius={700}  // Increase radius to spread stars further out
+    //             depth={500}   // Increase depth for a deeper starfield
+    //             count={10000} // Increase number of stars
+    //             factor={50}   // Increase factor to make stars larger
+    //             saturation={0} // Keep stars white
+    //             fade// Push stars into the background
+    //             />
                 
-                </group>
-                <HeroCamera isMobile = {isMobile}>
-                <Campfire position = {sizes.housePosition} rotation={[0,-Math.PI/3,0]} scale={sizes.houseScale}/>
-                </HeroCamera>
-                <group>
-                    <PythonLogo position={sizes.targetPosition} scale={0.035} />
-                </group>
-                <group>
-                    <ReactLogo position = {sizes.reactLogoPosition} />
-                    <GithubLogo position = {sizes.githubPosition} scale={0.7} />
-                </group>
-                <ambientLight intensity={1} />
-                <directionalLight position={[10,10,10]} />
-                </Suspense>
-            </Canvas>
-        </div>
+    //             </group>
+    //             <HeroCamera isMobile = {isMobile}>
+    //             <House position = {sizes.moonPosition} rotation={[0,-Math.PI/2,0]} scale={sizes.moonScale}/>
+    //             <pointLight 
+    //                 position={[sizes.moonPosition[0] + 5, sizes.moonPosition[1] + 5, sizes.moonPosition[2] + 5]} 
+    //                 intensity={2} 
+    //                 color="white"
+    //                 castShadow 
+    //             />
+    //             </HeroCamera>
+    //             <group>
+    //                 <PythonLogo position={sizes.targetPosition} scale={0.035} />
+    //             </group>
+    //             <group>
+    //                 <ReactLogo position = {sizes.reactLogoPosition} />
+    //                 <GithubLogo position = {sizes.githubPosition} scale={0.7} />
+    //             </group>
+    //             <ambientLight intensity={1} />
+    //             <directionalLight position={[10,10,10]} />
+    //             </Suspense>
+    //         </Canvas>
+    //     </div> */}
 
+
+    // // </section>
+    // // </div>
+    <section className="parallax hero-section">
+      <div className='parallax__content absolute top-[10%] sm:top-[16%] lg:top-[24%] w-full mx-auto lg:pl-[38vh] lg:pr-[30vh] xl:pl-96 xl:pr-72 2xl:px-40 3xl:px-60 flex flex-col lg:flex-row items-start z-10'>
+        <div className="flex-1 lg:mb-0">
+          <h1 className='font-medium text-white text-[40px] xs:text-[70px] sm:text-[68px] md:text-[80px] lg:text-[100px] 2xl:text-[140px] leading-[110px] 2xl:leading-[160px]'>
+            ROHAN SIVAM
+          </h1>
+          <Position />
+        </div>
+        <div className="flex-1 flex justify-start lg:justify-end mt-4 sm:mt-14 ml-8 xs:ml-[-4vh] sm:ml-[-17vh] md:ml-[-26vh] lg:mt-10 2xl:mt-0">
+          <div className='font-bold text-[20px] sm:text-[30px] md:text-[36px] 2xl:text-[46px] sm:leading-[40px] md:leading-[50px] 2xl:leading-[60px] streaky-glow max-w-sm 2xl:max-w-lg text-white text-left'>
+            {/* I love crafting <br/> captivating experiences for the digital world to savor. */}
+          </div>
+        </div>
+      </div>
+
+      <img className="parallax__stars" src="./parallax/clouds_1.svg" alt="" />
+      <img className="parallax__planets mobile-bottom" src="./parallax/clouds_2.svg" alt="" />
+      <img className="parallax__mountain1" src="./parallax/clouds_3.svg" alt="" />
+      <img className="parallax__mountain2 mobile-bottom" src="./parallax/clouds_4.svg" alt="" />
+      <img className="parallax__crater" src="./parallax/clouds_5.svg" alt="" />
+
+      <HouseCanvas scrollContainer={scrollContainer} />
     </section>
-    </div>
+
   )
 }
 
