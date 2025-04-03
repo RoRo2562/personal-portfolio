@@ -33,7 +33,7 @@ const About = () => {
 
   return (
     <section className='c-space my-20'>
-        <div className='grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full'>
+        {/* <div className='grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full'>
                 <div className='col-span-1 xl:row-span-3'>
                     <div className='w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5'>
                         <img src="/assets/grid1.png" alt="grid-1" className='w-full sm:h-[276px] h-fit object-contain' />
@@ -111,6 +111,12 @@ const About = () => {
                             </div>
                         </div>
                 </div>
+        </div> */}
+        <h1>About Me</h1>
+        <h2>A snippet of me</h2>
+        <h3>Learn a little more about me, what I love doing and what I strive for</h3>
+        <div>
+            <
         </div>
     </section>
   )
