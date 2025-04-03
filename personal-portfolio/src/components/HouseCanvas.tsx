@@ -41,6 +41,8 @@ const HouseCanvas = ({ scrollContainer }) => {
       handleResize();
       window.addEventListener("scroll", handleScroll);
       window.addEventListener("resize", handleResize);
+
+      console.log(position)
   
       return () => {
         window.removeEventListener("scroll", handleScroll);
