@@ -1,6 +1,57 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Globe, { GlobeMethods } from 'react-globe.gl'
 import Button from '../components/Button'
+import { SectionHeader } from '../components/SectionHeader'
+import Card from '../components/Card'
+import { div } from 'framer-motion/client'
+import TechIcon from '../components/TechIcon'
+
+import GithubIcon from './github.svg';
+import CardHeader from '../components/CardHeader'
+import TechStackItem from '../components/TechStackItem'
+
+const techStack = [
+    {
+        title: 'Typescript',
+        iconType: GithubIcon
+    },
+    {
+        title: 'Javascript',
+        iconType: GithubIcon
+    },
+    {
+        title: 'HTML5',
+        iconType: GithubIcon
+    },
+    {
+        title: 'CSS3',
+        iconType: GithubIcon
+    },
+    {
+        title: 'React',
+        iconType: GithubIcon
+    },
+    {
+        title: 'Github',
+        iconType: GithubIcon
+    },
+    {
+        title: 'Swift',
+        iconType:GithubIcon
+    },
+    {
+        title: 'Angular',
+        iconType:GithubIcon
+    },
+    {
+        title: 'Python',
+        iconType:GithubIcon
+    },
+    {
+        title: 'Java',
+        iconType:GithubIcon
+    },
+]
 
 const About = () => {
     const [hasCopied, setHasCopied] = useState(false)
@@ -32,7 +83,7 @@ const About = () => {
     }, []);
 
   return (
-    <section className='c-space my-20'>
+    <section className='py-20'>
         {/* <div className='grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full'>
                 <div className='col-span-1 xl:row-span-3'>
                     <div className='w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5'>
@@ -112,11 +163,32 @@ const About = () => {
                         </div>
                 </div>
         </div> */}
-        <h1>About Me</h1>
-        <h2>A snippet of me</h2>
-        <h3>Learn a little more about me, what I love doing and what I strive for</h3>
-        <div>
-            <
+        <div className='container'>
+        <SectionHeader eyebrow='Hello' title='Me' description='yay' />
+        <div className='mt-20 flex flex-col gap-8'>
+            <div className='md:grid md:grid-cols-5 md:gap-8'>
+            <Card className='h-[320px] md:col-span-2'>
+                <CardHeader title='Hello' description='me' />
+                <img src={''} alt="What I want to add here" />
+            </Card>
+            <Card className='h-[320px] p-0 md:col-span-3'>
+                <CardHeader title='My Tech Stack' description='Explore what tech stack I love using to create my apps' className='px-6 pt-6'/>
+                <section className='skills-section'>
+                    <TechStackItem items={techStack} className='mt-6'/>
+                    <TechStackItem items={techStack} className='mt-6'/>
+                </section>
+            </Card>
+            </div>
+            <Card>
+
+            </Card>
+            <Card>
+
+            </Card>
+            <Card>
+
+            </Card>
+        </div>
         </div>
     </section>
   )
