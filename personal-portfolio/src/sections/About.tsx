@@ -6,30 +6,45 @@ import Card from '../components/Card'
 import { div } from 'framer-motion/client'
 import TechIcon from '../components/TechIcon'
 
-import GithubIcon from '/assets/github.svg';
+import GithubIcon from '/assets/tech-icons/github.svg';
+import FigmaIcon from '/assets/tech-icons/figma.svg';
+import ReactIcon from '/assets/tech-icons/react.svg';
+import FirebaseIcon from '/assets/tech-icons/firebase.svg';
+import SwiftIcon from '/assets/tech-icons/swift.svg';
+import TypescriptIcon from '/assets/tech-icons/typescript.svg';
+import JavascriptIcon from '/assets/tech-icons/javascript.svg';
+import Css3Icon from '/assets/tech-icons/css.svg';
+import Html5Icon from '/assets/tech-icons/html.svg'
+import AngularIcon from '/assets/tech-icons/angular.svg'
+import MongoIcon from '/assets/tech-icons/mongodb.svg'
+import NodeIcon from '/assets/tech-icons/nodejs.svg'
+import TailwindIcon from '/assets/tech-icons/tailwind.svg'
+import PythonIcon from '/assets/tech-icons/python.svg'
+
+
 import CardHeader from '../components/CardHeader'
 import TechStackItem from '../components/TechStackItem'
 
 const techStack = [
     {
         title: 'Typescript',
-        iconType: GithubIcon
+        iconType: TypescriptIcon
     },
     {
         title: 'Javascript',
-        iconType: GithubIcon
+        iconType: JavascriptIcon
     },
     {
         title: 'HTML5',
-        iconType: GithubIcon
+        iconType: Html5Icon
     },
     {
         title: 'CSS3',
-        iconType: GithubIcon
+        iconType: Css3Icon
     },
     {
         title: 'React',
-        iconType: GithubIcon
+        iconType: ReactIcon
     },
     {
         title: 'Github',
@@ -37,19 +52,35 @@ const techStack = [
     },
     {
         title: 'Swift',
-        iconType:GithubIcon
+        iconType:SwiftIcon
     },
     {
         title: 'Angular',
-        iconType:GithubIcon
+        iconType:AngularIcon
     },
     {
         title: 'Python',
-        iconType:GithubIcon
+        iconType:PythonIcon
     },
     {
-        title: 'Java',
-        iconType:GithubIcon
+        title: 'NodeJS',
+        iconType:NodeIcon
+    },
+    {
+        title: 'Figma',
+        iconType:FigmaIcon
+    },
+    {
+        title: 'Firebase',
+        iconType:FirebaseIcon
+    },
+    {
+        title: 'Tailwind',
+        iconType:TailwindIcon
+    },
+    {
+        title: 'MongoDB',
+        iconType:MongoIcon
     },
 ]
 
@@ -163,7 +194,7 @@ const About = () => {
                         </div>
                 </div>
         </div> */}
-        <div className='container'>
+        <div className='container '>
         <SectionHeader eyebrow='Hello' title='Me' description='yay' />
         <div className='mt-20 flex flex-col gap-8'>
             <div className='md:grid md:grid-cols-5 md:gap-8'>
@@ -173,9 +204,9 @@ const About = () => {
             </Card>
             <Card className='h-[320px] p-0 md:col-span-3'>
                 <CardHeader title='My Tech Stack' description='Explore what tech stack I love using to create my apps' className='px-6 pt-6'/>
-                <section className='skills-section'>
-                    <TechStackItem items={techStack} className='mt-6'/>
-                    <TechStackItem items={techStack} className='mt-6'/>
+                <section className='skills-section pt-6'>
+                    <TechStackItem items={techStack} className='mt-6 py-0.5'/>
+                    <TechStackItem items={techStack} className='mt-6 py-0.5' direction='right'/>
                 </section>
             </Card>
             </div>
