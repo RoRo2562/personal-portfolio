@@ -21,9 +21,42 @@ import NodeIcon from '/assets/tech-icons/nodejs.svg'
 import TailwindIcon from '/assets/tech-icons/tailwind.svg'
 import PythonIcon from '/assets/tech-icons/python.svg'
 
+import AnimeIcon from '/assets/hobby-icons/anime.svg'
+import FootballIcon from '/assets/hobby-icons/football.svg'
+import GamingIcon from '/assets/hobby-icons/gaming.svg'
+import GymIcon from '/assets/hobby-icons/gym.svg'
+import MusicIcon from '/assets/hobby-icons/music.svg'
+import PokemonIcon from '/assets/hobby-icons/pokemon.svg'
 
 import CardHeader from '../components/CardHeader'
 import TechStackItem from '../components/TechStackItem'
+
+const hobbies = [
+    {
+        title: 'Pokemon',
+        iconType: PokemonIcon
+    },
+    {
+        title: 'Football',
+        iconType: FootballIcon
+    },
+    {
+        title: 'Gym',
+        iconType: GymIcon
+    },
+    {
+        title: 'Anime',
+        iconType: AnimeIcon
+    },
+    {
+        title: 'Music',
+        iconType: MusicIcon
+    },
+    {
+        title: 'Gaming',
+        iconType: GamingIcon
+    },
+]
 
 const techStack = [
     {
@@ -86,18 +119,18 @@ const techStack = [
 
 const About = () => {
     // const [hasCopied, setHasCopied] = useState(false)
-    // const globeRef = useRef<GlobeMethods | null>(null);
+    const globeRef = useRef<GlobeMethods | null>(null);
     // // Generate random arcs data
-    // const arcsData = [...Array(10).keys()].map(() => ({
-    //     startLat: (Math.random() - 0.5) * 180,  // Random start latitude
-    //     startLng: (Math.random() - 0.5) * 360,  // Random start longitude
-    //     endLat: (Math.random() - 0.5) * 180,    // Random end latitude
-    //     endLng: (Math.random() - 0.5) * 360,    // Random end longitude
-    //     color: [
-    //         ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
-    //         ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
-    //     ],
-    // }));
+    const arcsData = [...Array(10).keys()].map(() => ({
+        startLat: (Math.random() - 0.5) * 180,  // Random start latitude
+        startLng: (Math.random() - 0.5) * 360,  // Random start longitude
+        endLat: (Math.random() - 0.5) * 180,    // Random end latitude
+        endLng: (Math.random() - 0.5) * 360,    // Random end longitude
+        color: [
+            ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
+            ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
+        ],
+    }));
     // const handleCopy = () => {
     //     navigator.clipboard.writeText('rohan.sivam2562@gmail.com')
     //     setHasCopied(true)
@@ -105,16 +138,16 @@ const About = () => {
     //         setHasCopied(false)
     //     },2000)
     // }
-    // useEffect(() => {
-    //     if (globeRef.current) {
-    //         const controls = globeRef.current.controls();
-    //         controls.autoRotate = true; 
-    //         controls.autoRotateSpeed = 0.8; // Adjust speed if needed
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (globeRef.current) {
+            const controls = globeRef.current.controls();
+            controls.autoRotate = true; 
+            controls.autoRotateSpeed = 0.8; // Adjust speed if needed
+        }
+    }, []);
 
   return (
-    <section className='py-20'>
+    <section className='py-20 about-section'>
         {/* <div className='grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full'>
                 <div className='col-span-1 xl:row-span-3'>
                     <div className='w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5'>
@@ -194,31 +227,69 @@ const About = () => {
                         </div>
                 </div>
         </div> */}
-        <div className='container '>
-        <SectionHeader eyebrow='Hello' title='Me' description='yay' />
+        <div className='container mx-auto'>
+        <SectionHeader title='About Me' eyebrow='A little bit about me and how I create cool things' description='Always striving to do better' />
         <div className='mt-20 flex flex-col gap-8'>
-            <div className='md:grid md:grid-cols-5 md:gap-8'>
+            <div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
             <Card className='h-[320px] md:col-span-2'>
                 <CardHeader title='Hello' description='me' />
-                <img src={''} alt="What I want to add here" />
+                <img src={MongoIcon} alt="What I want to add here" />
             </Card>
             <Card className='h-[320px] p-0 md:col-span-3'>
                 <CardHeader title='My Tech Stack' description='Explore what tech stack I love using to create my apps' className='px-6 pt-6'/>
-                <section className='skills-section pt-6'>
+                <section className='skills-section'>
                     <TechStackItem items={techStack} className='mt-6 py-0.5'/>
                     <TechStackItem items={techStack} className='mt-6 py-0.5' direction='right'/>
                 </section>
             </Card>
             </div>
+            <div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
+                <Card className='h-[320px] p-0 flex flex-col col-span-3'>
+                    <CardHeader title='Beyond the code' description="Here's a little more about my hobbies and interests" className='px-6 pt-6'/>
+                    <div className='flex gap-4'>
+                        {hobbies.map((hobby)=>(
+                            <div key={hobby.title} className='inline-flex items-center gap-4 py-2 px-8 outline-2 outline-white/10 rounded-lg justify-center'>
+                                <span className='font-medium'>{hobby.title}</span>
+                                <span><img src={hobby.iconType} alt="" className='size-10' /></span>
+                            </div>
+                        ))
+
+                        }
+                    </div>
+            
+                </Card>
+                <Card className='h-[320px] p-0 flex flex-col col-span-2'>
+                    <CardHeader title='I work in Melbourne' description="I graduated from Monash in 2024 with a Bachelor's Degree of Computer Science" className='px-6 pt-6'/>
+                    <div className='relative mt-auto overflow-hidden h-[400px]'>
+                        <div className='absolute -top-20 left-1/2 -translate-x-1/2'>
+                        <Globe
+                            ref={globeRef as React.MutableRefObject<GlobeMethods | undefined>} 
+                            height={600}
+                            width={600}
+                            backgroundColor='rgba(0,0,0,0)'
+                            showAtmosphere
+                            showGraticules
+                            globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
+                            arcsData={arcsData}
+                            arcColor="color"
+                            arcDashLength={() => Math.random()}
+                            arcDashGap={() => Math.random()}
+                            arcDashAnimateTime={() => Math.random() * 4000 + 500}
+                            labelsData={[{
+                            lat: -37.8102, lng: 144.962646,
+                            text: "I'm here",
+                            color: 'white',
+                            size: 20
+                            }]}
+                        />
+                        </div>
+                    </div>
+                </Card>  
+            </div>
             <Card>
 
             </Card>
-            <Card>
-
-            </Card>
-            <Card>
-
-            </Card>
+          
         </div>
         </div>
     </section>

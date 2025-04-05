@@ -12,12 +12,14 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className='relative z-0 bg-primary'>
-        <Navbar />
+        <div>
+          <Navbar />
+        </div>
         <div className='wrapper' ref={wrapperRef}>
           <div id="hero" className='z-10'>
                 <Hero scrollContainer={wrapperRef} />
           </div>
-          <div className='relative z-30 bg-primary pt-24'>
+          <div className='relative z-30 bg-primary'>
             <About />
           </div>
           <div id="experience" className='relative z-30 bg-primary'>
