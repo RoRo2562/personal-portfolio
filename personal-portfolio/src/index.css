@@ -154,19 +154,17 @@ body {
   transform: translateZ(0);
 }
 
-.wrapper {
-  height: 100vh;
-  overflow-y: auto;
+/* .wrapper {
   overflow-x: hidden;
   perspective: 10px;
-}
+} */
 
 .parallax {
   position: relative;
   min-height: 75vh;
   width: 100%;
-  left: 50%; /* Center the image horizontally */
-  transform: translateX(-50%); /* Center the image horizontally */
+  left: 50%; 
+  transform: translateX(-50%);
   display: grid;
   grid-template-areas: "stack";
 }
@@ -181,8 +179,8 @@ body {
   width: 100%;
 }
 
-.parallax__stars {
-  --parallax-speed: 320;
+/* .parallax__stars {
+  --parallax-speed: 100;
   z-index: 2;
 }
 
@@ -214,7 +212,8 @@ body {
 
 .parallax__crater {
   z-index: 7;
-}
+  --parallax-speed: 100;
+} */
 
 .parallax__content {
   --parallax-speed: 210;
@@ -241,11 +240,11 @@ body {
   }
 }
 
-@keyframes parallax {
+/* @keyframes parallax {
   to {
     transform: translateY(calc(var(--parallax-speed) * 1vh));
   }
-}
+} */
 
 .streaky-glow {
   position: relative;
@@ -384,4 +383,67 @@ body {
 .indicator-line.active {
   animation: indicator-line 0.5s ease infinite;
   animation-delay: calc(var(--animation-order) * 0.1s);
+}
+
+.floating-nav{
+  background: black;
+  color: white;
+  border-radius: 8px;
+  border: 1px solid #fff;
+}
+
+.cloud {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Each group with its respective z-index (adjust as needed) */
+.cloud--group1 {
+  bottom: 0;
+  z-index: 2;
+}
+
+.cloud--group2 {
+  bottom: -10%;
+  z-index: 3;
+}
+
+.cloud--group3 {
+  bottom: 0;
+  z-index: 4;
+}
+
+.cloud--group4 {
+  bottom: 0;
+  z-index: 5;
+}
+
+.cloud--group5 {
+  bottom: 0;
+  z-index: 6;
+}
+
+.mobile-cloud--group1 {
+  top: 0;
+  z-index: 2;
+}
+
+.mobile-cloud--group2 {
+  top: 0;
+  z-index: 3;
+}
+.mobile-cloud--group3 {
+  top: 0;
+  z-index: 4;
+}
+
+.mobile-cloud--group4 {
+  top: 0;
+  z-index: 5;
+}
+
+.mobile-cloud--group5 {
+  top: 0;
+  z-index: 6;
 }
