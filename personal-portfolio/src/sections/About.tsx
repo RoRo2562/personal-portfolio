@@ -3,8 +3,6 @@ import Globe, { GlobeMethods } from 'react-globe.gl'
 import Button from '../components/Button'
 import { SectionHeader } from '../components/SectionHeader'
 import Card from '../components/Card'
-import { div } from 'framer-motion/client'
-import TechIcon from '../components/TechIcon'
 
 import GithubIcon from '/assets/tech-icons/github.svg';
 import FigmaIcon from '/assets/tech-icons/figma.svg';
@@ -21,41 +19,20 @@ import NodeIcon from '/assets/tech-icons/nodejs.svg'
 import TailwindIcon from '/assets/tech-icons/tailwind.svg'
 import PythonIcon from '/assets/tech-icons/python.svg'
 
-import AnimeIcon from '/assets/hobby-icons/anime.svg'
-import FootballIcon from '/assets/hobby-icons/football.svg'
-import GamingIcon from '/assets/hobby-icons/gaming.svg'
-import GymIcon from '/assets/hobby-icons/gym.svg'
-import MusicIcon from '/assets/hobby-icons/music.svg'
-import PokemonIcon from '/assets/hobby-icons/pokemon.svg'
-
 import CardHeader from '../components/CardHeader'
 import TechStackItem from '../components/TechStackItem'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from "gsap/all";
+
+import VideoPreview from "../components/VideoPreview";
+import { BentoTilt } from '../components/BentoTilt'
+
+gsap.registerPlugin(ScrollTrigger);
 
 const hobbies = [
-    {
-        title: 'Pokemon',
-        iconType: PokemonIcon
-    },
-    {
-        title: 'Football',
-        iconType: FootballIcon
-    },
-    {
-        title: 'Gym',
-        iconType: GymIcon
-    },
-    {
-        title: 'Anime',
-        iconType: AnimeIcon
-    },
-    {
-        title: 'Music',
-        iconType: MusicIcon
-    },
-    {
-        title: 'Gaming',
-        iconType: GamingIcon
-    },
+'Pokemon','Football','Gym','Anime'
+
 ]
 
 const techStack = [
@@ -117,7 +94,63 @@ const techStack = [
     },
 ]
 
+
+
 const About = () => {
+
+    const [currentIndex, setCurrentIndex] = useState(1);
+    const [hasClicked, setHasClicked] = useState(false);
+  
+    const [loading, setLoading] = useState(true);
+    const [loadedVideos, setLoadedVideos] = useState(0);
+  
+    const totalVideos = 4;
+    const nextVdRef = useRef(null);
+  
+    const handleVideoLoad = () => {
+      setLoadedVideos((prev) => prev + 1);
+    };
+  
+    useEffect(() => {
+      if (loadedVideos === totalVideos - 1) {
+        setLoading(false);
+      }
+    }, [loadedVideos]);
+  
+    const handleMiniVdClick = () => {
+      setHasClicked(true);
+  
+      setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
+    };
+  
+    useGSAP(
+      () => {
+        if (hasClicked) {
+          gsap.set("#next-video", { visibility: "visible" });
+          gsap.to("#next-video", {
+            transformOrigin: "center center",
+            scale: 1,
+            width: "100%",
+            height: "100%",
+            duration: 1,
+            ease: "power1.inOut",
+            onStart: () => nextVdRef.current.play(),
+          });
+          gsap.from("#current-video", {
+            transformOrigin: "center center",
+            scale: 0,
+            duration: 1.5,
+            ease: "power1.inOut",
+          });
+        }
+      },
+      {
+        dependencies: [currentIndex],
+        revertOnUpdate: true,
+      }
+    );
+  
+    const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
     // const [hasCopied, setHasCopied] = useState(false)
     const globeRef = useRef<GlobeMethods | null>(null);
     // // Generate random arcs data
@@ -148,149 +181,115 @@ const About = () => {
 
   return (
     <section className='py-20 about-section'>
-        {/* <div className='grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full'>
-                <div className='col-span-1 xl:row-span-3'>
-                    <div className='w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5'>
-                        <img src="/assets/grid1.png" alt="grid-1" className='w-full sm:h-[276px] h-fit object-contain' />
-                        <div>
-                            <p className='text-xl font-semibold mb-2 text-white font-generalsans'>Hey there, I'm Rohan</p>
-                            <p className='text-[#afb0b6] text-base font-generalsans'>I am a Computer Science graduate (Distinction) with 10 months of software engineering experience, including at a startup founded by ex-EY, Deloitte, and Accenture executives. I have built and optimised high-traffic cloud apps, developed distributed systems, and applied parallel computing.</p>
-                        </div>
-                    </div>
+        <div className='container mx-auto'>
+            <SectionHeader title='About Me' eyebrow='A little bit about me and how I create cool things' description='Always striving to do better' />
+            <div className='mt-20 flex flex-col gap-8'>
+                <div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
+                    <BentoTilt className='h-[320px] md:col-span-2 about-card'>
+                        <Card className=''>
+                            <CardHeader title='Hello' description='me' />
+                            <img src={MongoIcon} alt="What I want to add here" />
+                        </Card>
+                    </BentoTilt>
+                    <BentoTilt className='h-[320px] p-0 md:col-span-3 about-card'>
+                        <Card className=''>
+                            <CardHeader title='My Tech Stack' description='Explore what tech stack I love using to create my apps' className='px-6 pt-6'/>
+                            <section className='skills-section'>
+                                <TechStackItem items={techStack} className='py-0.5'/>
+                                <TechStackItem items={techStack} className='mt-6 py-0.5' direction='right'/>
+                            </section>
+                        </Card>
+                    </BentoTilt>
                 </div>
-                <div className='col-span-1 xl:row-span-3'>
-                    <div className='w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5'>
-                        <img src="assets/grid2.png" alt="grid-2" className='w-full sm:h-[276px] h-fit object-contain'/>
-                        <div>
-                            <p className='text-xl font-semibold mb-2 text-white font-generalsans'>Skill Stack</p>
-                            <p className='text-[#afb0b6] text-base font-generalsans'>Java, Python, Swift, JavaScript, TypeScript, React Native, React, Node.js, Express, MongoDB, MySQL, Firebase, AWS, Docker, Git, CI/CD, Agile, Linux, Django, Flask, REST APIs.</p>
+                <div className='grid grid-cols-1 md:grid-cols-5 gap-8' >
+                    <BentoTilt className='h-[320px] p-0 flex flex-col col-span-3 about-card'>
+                        <Card className=''>
+                            <h1 className="special-font uppercase font-zentry font-black text-3xl sm:right-10 sm:text-3xl md:text-5xl lg:text-5xl absolute top-5 left-10 z-40 text-blue-75">
+                                My Hobbies
+                            </h1>
+                            <h1 className="special-font uppercase font-zentry font-black text-2xl sm:right-10 sm:text-2xl md:text-3xl lg:text-3xl absolute bottom-5 right-10 z-40 text-blue-75">
+                                {hobbies[currentIndex-1]}
+                            </h1>
+                        {/* <CardHeader title='Beyond the code' description="Here's a little more about my hobbies and interests" className='z-20'/> */}
+                        <div className='relative z-10 h-full w-full overflow-hidden rounded-lg bg-blue-75' id='video-frame'>
+                        <div className="mask-clip-path absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
+                            <VideoPreview>
+                            <div
+                                onClick={handleMiniVdClick}
+                                className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
+                            >
+                                <video
+                                ref={nextVdRef}
+                                src={getVideoSrc((currentIndex % totalVideos) + 1)}
+                                loop
+                                muted
+                                id="current-video"
+                                className="size-64 origin-center scale-150 object-cover object-center"
+                                onLoadedData={handleVideoLoad}
+                                />
+                            </div>
+                            </VideoPreview>
+
                         </div>
-                    </div>
-                </div>
-                <div className='col-span-1 xl:row-span-4'>
-                    <div className='w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5'>
-                        <div className='rounded-4xl w-full sm:h-[326px] h-fit flex justify-center items-center'>
+
+                        <video
+                            ref={nextVdRef}
+                            src={getVideoSrc(currentIndex)}
+                            loop
+                            muted
+                            id="next-video"
+                            className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
+                            onLoadedData={handleVideoLoad}
+                        />
+                        <video
+                            src={getVideoSrc(
+                            currentIndex === totalVideos - 1 ? 1 : currentIndex
+                            )}
+                            autoPlay
+                            loop
+                            muted
+                            className="absolute left-0 top-0 size-full object-cover object-center"
+                            onLoadedData={handleVideoLoad}
+                        />
+    
+                        </div>
+                
+                        </Card>
+                    </BentoTilt>
+                    <BentoTilt className='h-[320px] p-0 flex flex-col col-span-2 about-card'>
+                        <Card className=''>
+                        <CardHeader title='I work in Melbourne' description="I graduated from Monash in 2024 with a Bachelor's Degree of Computer Science" className='px-6 pt-6'/>
+                        <div className='relative mt-auto overflow-hidden h-full w-full'>
+                            <div className='absolute -top-20 left-1/2 -translate-x-1/2'>
                             <Globe
                                 ref={globeRef as React.MutableRefObject<GlobeMethods | undefined>} 
-                                height={350}
-                                width={350}
+                                height={600}
+                                width={600}
                                 backgroundColor='rgba(0,0,0,0)'
                                 showAtmosphere
                                 showGraticules
                                 globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
-                                bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.jpg"
-                                arcsData={arcsData}  // Add arcs data here
-                                arcColor="color"  // Use the color defined in arcsData
-                                arcDashLength={() => Math.random()}  // Randomize dash length
-                                arcDashGap={() => Math.random()}     // Randomize dash gap
-                                arcDashAnimateTime={() => Math.random() * 4000 + 500}  // Randomize animation time
+                                arcsData={arcsData}
+                                arcColor="color"
+                                arcDashLength={() => Math.random()}
+                                arcDashGap={() => Math.random()}
+                                arcDashAnimateTime={() => Math.random() * 4000 + 500}
                                 labelsData={[{
-                                    lat: -37.8102, lng: 144.962646,
-                                    text: "I'm here",
-                                    color: 'white',
-                                    size: 20
+                                lat: -37.8102, lng: 144.962646,
+                                text: "I'm here",
+                                color: 'white',
+                                size: 20
                                 }]}
                             />
-                        </div>
-                        <div>
-                            <p className='text-xl font-semibold mb-2 text-white font-generalsans'>I'm based in Melbourne</p>
-                            <p className='text-[#afb0b6] text-base font-generalsans'>Remote work available</p>
-                            <Button name = "Contact Me" isBeam containerClass='w-full mt-10' />
-                        </div>
-
-                    </div>
-                </div>
-                <div className='xl:col-span-2 xl:row-span-3'>
-                    <div className='w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5'>
-                                <img src="/assets/grid3.png" alt="grid-3" className='w-full sm:h-[266px] h-fit object-contain'/>
-                                <div>
-                                    <p className='text-xl font-semibold mb-2 text-white font-generalsans'>
-
-                                    </p>
-                                    <p className='text-[#afb0b6] text-base font-generalsans'>Remote work available</p>
-                                </div>
-                    </div>
-                    
-                </div>
-                <div className='xl:col-span-1 xl:row-span-2'>
-                        <div className='w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5'>
-                            <img src="assets/grid4.png" alt="grid4" className='w-full md:h-[126px] sm:h-[276px] h-fit object-cover sm:object-top'/>
-                            <div className='space-y-2'>
-                                <p className='text-[#afb0b6] text-base font-generalsans text-center'>Contact Me</p>
-                                <div className='cursor-pointer flex justify-center items-center gap-2' onClick={handleCopy}>
-                                    <img src={hasCopied? 'assets/tick.svg': 'assets/copy.svg'} alt="" />
-                                    <p className='lg:text-2xl md:text-xl font-medium bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] to-100% bg-clip-text text-transparent text-white'>rohan.sivam2562@gmail.com</p>
-
-                                </div>
-
                             </div>
                         </div>
+                        </Card> 
+                    </BentoTilt> 
                 </div>
-        </div> */}
-        <div className='container mx-auto'>
-        <SectionHeader title='About Me' eyebrow='A little bit about me and how I create cool things' description='Always striving to do better' />
-        <div className='mt-20 flex flex-col gap-8'>
-            <div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
-            <Card className='h-[320px] md:col-span-2'>
-                <CardHeader title='Hello' description='me' />
-                <img src={MongoIcon} alt="What I want to add here" />
-            </Card>
-            <Card className='h-[320px] p-0 md:col-span-3'>
-                <CardHeader title='My Tech Stack' description='Explore what tech stack I love using to create my apps' className='px-6 pt-6'/>
-                <section className='skills-section'>
-                    <TechStackItem items={techStack} className='mt-6 py-0.5'/>
-                    <TechStackItem items={techStack} className='mt-6 py-0.5' direction='right'/>
-                </section>
-            </Card>
-            </div>
-            <div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
-                <Card className='h-[320px] p-0 flex flex-col col-span-3'>
-                    <CardHeader title='Beyond the code' description="Here's a little more about my hobbies and interests" className='px-6 pt-6'/>
-                    <div className='flex gap-4'>
-                        {hobbies.map((hobby)=>(
-                            <div key={hobby.title} className='inline-flex items-center gap-4 py-2 px-8 outline-2 outline-white/10 rounded-lg justify-center'>
-                                <span className='font-medium'>{hobby.title}</span>
-                                <span><img src={hobby.iconType} alt="" className='size-10' /></span>
-                            </div>
-                        ))
+                <Card>
 
-                        }
-                    </div>
-            
                 </Card>
-                <Card className='h-[320px] p-0 flex flex-col col-span-2'>
-                    <CardHeader title='I work in Melbourne' description="I graduated from Monash in 2024 with a Bachelor's Degree of Computer Science" className='px-6 pt-6'/>
-                    <div className='relative mt-auto overflow-hidden h-[400px]'>
-                        <div className='absolute -top-20 left-1/2 -translate-x-1/2'>
-                        <Globe
-                            ref={globeRef as React.MutableRefObject<GlobeMethods | undefined>} 
-                            height={600}
-                            width={600}
-                            backgroundColor='rgba(0,0,0,0)'
-                            showAtmosphere
-                            showGraticules
-                            globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
-                            arcsData={arcsData}
-                            arcColor="color"
-                            arcDashLength={() => Math.random()}
-                            arcDashGap={() => Math.random()}
-                            arcDashAnimateTime={() => Math.random() * 4000 + 500}
-                            labelsData={[{
-                            lat: -37.8102, lng: 144.962646,
-                            text: "I'm here",
-                            color: 'white',
-                            size: 20
-                            }]}
-                        />
-                        </div>
-                    </div>
-                </Card>  
             </div>
-            <Card>
-
-            </Card>
-          
-        </div>
         </div>
     </section>
   )

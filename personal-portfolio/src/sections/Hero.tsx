@@ -1,10 +1,17 @@
 import Position from '../components/Position'
 import HouseCanvas from '../components/HouseCanvas'
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 
 const Hero = ({scrollContainer}) => {
   const { scrollY } = useScroll();
+  const [scrollRange, setScrollRange] = useState(1000);
+
+  useEffect(() => {
+    // Dynamically set scroll range based on screen height
+    setScrollRange(window.innerHeight * 1.5); // 1.5x viewport height
+  }, []);
 
 // Create parallax transforms
 // const starsY = useTransform(scrollY, [0, 500], [0, -50]);
@@ -14,11 +21,13 @@ const Hero = ({scrollContainer}) => {
 // const craterY = useTransform(scrollY, [0, 500], [0, -250]);
 
 const cloudGroups = [
-  { y: useTransform(scrollY, [0, 1000], [-50, -350]), clouds: ['cloud_10.svg', 'cloud_6.svg'] },
-  { y: useTransform(scrollY, [0, 1000], [0, -300]), clouds: ['cloud_2.svg'] },
-  { y: useTransform(scrollY, [0, 1000], [0, -250]), clouds: ['cloud_3.svg'] },
-  { y: useTransform(scrollY, [0, 1000], [50, -200]), clouds: ['cloud_7.svg', 'cloud_5.svg'] },
-  { y: useTransform(scrollY, [0, 1000], [0, -150]), clouds: ['cloud_8.svg'] },
+  { y: useTransform(scrollY, [0, 800], [-50, -650]), clouds: ['cloud_10.svg', 'cloud_6.svg'] },
+  { y: useTransform(scrollY, [0, 800], [0, -1100]), clouds: ['cloud_2.svg'] },
+  { y: useTransform(scrollY, [0, 800], [0, -550]), clouds: ['cloud_3.svg'] },
+  { y: useTransform(scrollY, [0, 800], [50, -1000]), clouds: ['cloud_7.svg', 'cloud_5.svg'] },
+  { y: useTransform(scrollY, [0, 800], [0, -550]), clouds: ['cloud_8.svg'] },
+  { y: useTransform(scrollY, [0, 800], [2000, 200]), clouds: ['cloud_10.svg', 'cloud_6.svg'] },
+  { y: useTransform(scrollY, [0, 800], [2000, -100]), clouds: ['cloud_7.svg', 'cloud_5.svg'] },
 ];
 
 const mobileCloudGroups = [

@@ -6,6 +6,7 @@ import Experience from './sections/Experience'
 import Projects from './sections/Projects'
 import Grid from './sections/Grid'
 import { BrowserRouter } from "react-router";
+import Contact from './sections/Contact'
 
 const App = () => {
   const wrapperRef = useRef(null);
@@ -25,8 +26,12 @@ const App = () => {
           <div id="experience" className='relative z-30 bg-primary'>
               <Experience />
           </div>
-          <div id="contact" className='relative z-30 bg-primary'>
+          <div id="projects" className='relative z-30 bg-primary'>
               < Projects />
+          </div>
+          <div id="contact" className='relative z-30 bg-primary'>
+              {/* < Projects /> */}
+              <Contact />
           </div>
         </div>
       </div>

@@ -66,11 +66,9 @@ const Navbar = () => {
   }, [currentScrollY, lastScrollY]);
 
   useEffect(() => {
-    console.log('ScrollY:', currentScrollY); // Check if the value is updating
   }, [currentScrollY]);  // Logs whenever currentScrollY changes
 
   useEffect(() => {
-    console.log('isNavVisible', isNavVisible);  // Debug the visibility state
     gsap.to(navContainerRef.current, {
       y: isNavVisible ? '0%' : '-120%',
       opacity: isNavVisible ? 1 : 0,

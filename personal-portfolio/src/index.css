@@ -2,11 +2,31 @@
 @import "tailwindcss";
 @tailwind utilities;
 
-@font-face {
-  font-family: "general";
-  src: url("/fonts/general.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
+@layer base {
+  @font-face {
+    font-family: "circular-web";
+    src: url("/fonts/circularweb-book.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "general";
+    src: url("/fonts/general.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "robert-medium";
+    src: url("/fonts/robert-medium.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "robert-regular";
+    src: url("/fonts/robert-regular.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "zentry";
+    src: url("/fonts/zentry-regular.woff2") format("woff2");
+  }
 }
 
 body {
@@ -35,16 +55,16 @@ body {
 
   /* background: linear-gradient(to bottom,#9B5E85, #826FA0,#3A5BA7, #011825  , #011825, #011825, #011825 , #011825, #011825 , #011825, #011825, #011825 , #011825, #011825);
 } */
- background: #011825;
+ background: black;
 }
 
 
 @layer base {
   :root {
-    --color-primary: #011825;
+    --color-primary: black;
     --color-secondary: #F0EFEB;
-    --color-tertiary: #0D3056;
-    --color-quaternary: #1689C8;
+    --color-tertiary: #3A5BA7;
+    --color-quaternary: #5F74B1;
   }
 }
 
@@ -169,51 +189,7 @@ body {
   grid-template-areas: "stack";
 }
 
-.parallax > * {
-  grid-area: stack;
-  animation: parallax linear;
-  animation-timeline: scroll();
-}
 
-.parallax > img {
-  width: 100%;
-}
-
-/* .parallax__stars {
-  --parallax-speed: 100;
-  z-index: 2;
-}
-
-.parallax__planets {
-  --parallax-speed: 290;
-  z-index: 3;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.parallax__sun {
-  --parallax-speed: 270;
-  z-index: 4;
-}
-
-.parallax__mountain1 {
-  --parallax-speed: 250;
-  z-index: 5;
-}
-
-.parallax__mountain2 {
-  --parallax-speed: 140;
-  z-index: 6;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.parallax__crater {
-  z-index: 7;
-  --parallax-speed: 100;
-} */
 
 .parallax__content {
   --parallax-speed: 210;
@@ -240,11 +216,6 @@ body {
   }
 }
 
-/* @keyframes parallax {
-  to {
-    transform: translateY(calc(var(--parallax-speed) * 1vh));
-  }
-} */
 
 .streaky-glow {
   position: relative;
@@ -386,7 +357,7 @@ body {
 }
 
 .floating-nav{
-  background: black;
+  background-color: rgba(0, 0, 0, 0.5); /* 20% opacity */
   color: white;
   border-radius: 8px;
   border: 1px solid #fff;
@@ -424,6 +395,15 @@ body {
   z-index: 6;
 }
 
+.cloud--group6 {
+  bottom: 0;
+  z-index: 7;
+}
+.cloud--group7 {
+  bottom: 0;
+  z-index: 8;
+}
+
 .mobile-cloud--group1 {
   top: 0;
   z-index: 2;
@@ -446,4 +426,21 @@ body {
 .mobile-cloud--group5 {
   top: 0;
   z-index: 6;
+}
+
+@keyframes appear {
+  from{
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.about-card{
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
 }
