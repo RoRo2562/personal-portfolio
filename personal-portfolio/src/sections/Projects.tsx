@@ -1,97 +1,101 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { myProjects } from '../constants'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { Canvas } from '@react-three/fiber';
-import { Center, OrbitControls } from '@react-three/drei';
-import CanvasLoader from '../components/CanvasLoader';
-import DemoComputer from '../components/DemoComputer';
+// import { Canvas } from '@react-three/fiber';
+// import { Center, OrbitControls } from '@react-three/drei';
+// import CanvasLoader from '../components/CanvasLoader';
+// import DemoComputer from '../components/DemoComputer';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useScroll, useTransform, motion } from "framer-motion";
 
 const projectCount = myProjects.length;
 
 const Projects = () => {
+    const projects = [
+      {
+        title: "FitHub",
+        src: "/project-assets/fithub.jpg"
+      },
+      {
+        title: "Food Reviewing Platform",
+        src: "/project-assets/moneats.png"
+      },
+      {
+        title: "Package Management system",
+        src: "/project-assets/fithub.jpg"
+      },
+    ]
+    const [selectedProject, setSelectedProject] = useState(0);
 
-    const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-
-    const handleNavigation = (direction) => {
-      setSelectedProjectIndex((prevIndex) => {
-        if (direction === 'previous') {
-          return prevIndex === 0 ? projectCount - 1 : prevIndex - 1;
-        } else {
-          return prevIndex === projectCount - 1 ? 0 : prevIndex + 1;
-        }
-      });
+    // Get scroll position
+    const { scrollYProgress } = useScroll();
+    const yRange = useTransform(scrollYProgress, [0, 1], [0, 200]); // Adjust range based on how far you want to scroll the text
+  
+    // Fixing possible infinite loop by ensuring the selectedProject is updated only when needed
+    const handleMouseOver = (index) => {
+      console.log(index)
+      if (index !== selectedProject) {
+        setSelectedProject(index); // Only update when index is different
+      }
+      console.log(projects[selectedProject].src)
     };
-
-    useGSAP(() => {
-        gsap.fromTo(`.animatedText`, { opacity: 0 }, { opacity: 1, duration: 1, stagger: 0.2, ease: 'power2.inOut' });
-      }, [selectedProjectIndex]);
-    
-      const currentProject = myProjects[selectedProjectIndex];
-  return (
-    <section className='sm:px-10 px-5 my-20'>
-        <p className='sm:text-4xl text-3xl font-semibold bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] to-100% bg-clip-text text-transparent'>My Projects</p>
-        <div className='grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full'>
-            <div className='flex flex-col gap-5 relative sm:p-1 py-10 px-5 shadow-2xl shadow-black-200 '>
-                <div className='absolute top-0 right-0'>
-                    <img src={currentProject.spotlight} alt="spotlight" className='w-full h-96 object-cover rounded-xl'/>
-                </div>
-                <div className='p-3 backdrop-filter backdrop-blur-3xl w-fit rounded-lg' style={myProjects[0].logoStyle}>
-                    <img src={currentProject.logo} alt=""  className='w-10 h-10 shadow-sm'/>
-
-                </div>
-                <div className='flex flex-col gap-5 text-white my-5'>
-                    <p className='text-white text-2xl font-semibold animatedText'>{currentProject.title}</p>
-                    <p className='animatedText'>{currentProject.desc}</p>
-                    <p className='animatedText'>{currentProject.subdesc}</p>
-                </div>
-                <div className="flex items-center justify-between flex-wrap gap-5">
-                <div className="flex items-center gap-3">
-                {currentProject.tags.map((tag, index) => (
-                    <div key={index} className="w-10 h-10 rounded-md p-2 bg-neutral-100/10 backdrop-filter backdrop-blur-lg flex justify-center items-center">
-                    <img src={tag.path} alt={tag.name} />
-                    </div>
-                ))}
-                </div>
-
-                <a
-                className="flex items-center gap-2 cursor-pointer text-white"
-                href={currentProject.href}
-                target="_blank"
-                rel="noreferrer">
-                <p>Check Live Site</p>
-                <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
-                </a>
+  
+    useEffect(() => {
+      // Optional: You can add a cleanup function if you need to handle side effects on mount/unmount
+    }, [selectedProject]); // Make sure to control the dependencies carefully
+  
+    return (
+      <div className="relative">
+        {/* Sticky top section */}
+        <div className="sticky top-0 h-screen z-0 pointer-events-none">
+          <div className="flex h-full justify-between gap-[5%] p-[10%] text-white">
+            {/* Image */}
+            <div className="relative w-[40%]">
+              <img
+                src={projects[selectedProject].src}
+                alt="Project"
+                className="object-cover w-full h-full"
+              />
             </div>
-
-            <div className="flex justify-between items-center mt-7">
-                <button className="arrow-btn" onClick={() => handleNavigation('previous')}>
-                <img src="/assets/left-arrow.png" alt="left arrow" className="w-4 h-4"/>
-                </button>
-
-                <button className="arrow-btn" onClick={() => handleNavigation('next')}>
-                <img src="/assets/right-arrow.png" alt="right arrow" className="w-4 h-4" />
-                </button>
+  
+            {/* Left Column */}
+            <div className="w-[20%] text-[1.6vw] flex items-start">
+              <p>Designing thoughtful user experiences</p>
             </div>
-            </div>
-            <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
-          <Canvas>
-            <ambientLight intensity={Math.PI} />
-            <directionalLight position={[10, 10, 5]} />
-            <Center>
-              <Suspense fallback={<CanvasLoader />}>
-                <group scale={2} position={[0, -3, 0]} rotation={[0, -0.1, 0]}>
-                  <DemoComputer texture={currentProject.texture} />
-                </group>
-              </Suspense>
-            </Center>
-            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
-          </Canvas>
+  
+            {/* Right Column with Framer Motion animation */}
+            <motion.div
+              className="w-[20%] text-[1vw] relative"
+              style={{
+                y: yRange, // Animate vertical position based on scroll progress
+              }}
+            >
+              <p>
+                I specialize in designing thoughtful user experiences that combine
+                aesthetics with usability to enhance digital interactions and leave a
+                lasting impression.
+              </p>
+            </motion.div>
+          </div>
         </div>
-
+  
+        {/* Scrollable content */}
+        <div className="mt-[100vh] p-[10%] text-white flex flex-col gap-10 z-20">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              onMouseOver={() => handleMouseOver(index)} // Ensure selectedProject only updates if necessary
+              className="w-full uppercase text-[3vw] border-b border-white flex justify-end cursor-pointer"
+            >
+              <h2 className="mt-[40px] mb-[20px] cursor-default">{project.title}</h2>
+            </div>
+          ))}
         </div>
-    </section>
-  )
+      </div>
+    );
+
+  
 }
 
 export default Projects

@@ -7,19 +7,6 @@ import { riseWithFade } from '../utils/motion';
 
 const Hero = ({scrollContainer}) => {
   const { scrollY } = useScroll();
-  const [scrollRange, setScrollRange] = useState(1000);
-
-  useEffect(() => {
-    // Dynamically set scroll range based on screen height
-    setScrollRange(window.innerHeight * 1.5); // 1.5x viewport height
-  }, []);
-
-// Create parallax transforms
-// const starsY = useTransform(scrollY, [0, 500], [0, -50]);
-// const planetsY = useTransform(scrollY, [0, 500], [0, -100]);
-// const mountain1Y = useTransform(scrollY, [0, 500], [0, -150]);
-// const mountain2Y = useTransform(scrollY, [0, 500], [0, -200]);
-// const craterY = useTransform(scrollY, [0, 500], [0, -250]);
 
 const cloudGroups = [
   { y: useTransform(scrollY, [0, 800], [-50, -650]), clouds: ['cloud_10.svg', 'cloud_6.svg'] },
@@ -42,8 +29,8 @@ const mobileCloudGroups = [
     <motion.section className="parallax hero-section h-[100vh]" initial='initial' animate='animate'>
       <div className='parallax__content absolute top-[18%] sm:top-[16%] lg:top-[24%] w-full mx-auto lg:pl-[10vh] lg:pr-[30vh] xl:pl-20 xl:pr-72 2xl:px-20 3xl:px-20 flex flex-col lg:flex-row items-start z-10'>
         <div className="flex-1 lg:mb-0">
-          <motion.h1 className='special-font uppercase font-zentry font-medium text-white text-[40px] xs:text-[70px] sm:text-[68px] md:text-[80px] lg:text-[100px] 2xl:text-[140px] leading-[110px] 2xl:leading-[160px]' variants={riseWithFade}>
-            ROHAN <br className='hidden xl:block' /> SIVAM
+          <motion.h1 className='special-font uppercase font-zentry font-medium text-white text-[40px] xs:text-[70px] sm:text-[68px] md:text-[80px] lg:text-[100px] 2xl:text-[140px] leading-[110px] 2xl:leading-[160px] block' variants={riseWithFade}>
+            ROHAN SIVAM
           </motion.h1>
           {/* <h1 className='font-medium text-white text-[40px] xs:text-[70px] sm:text-[68px] md:text-[80px] lg:text-[100px] 2xl:text-[140px] leading-[110px] 2xl:leading-[160px]'>
             SIVAM

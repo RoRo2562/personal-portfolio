@@ -18,6 +18,7 @@ import MongoIcon from '/assets/tech-icons/mongodb.svg'
 import NodeIcon from '/assets/tech-icons/nodejs.svg'
 import TailwindIcon from '/assets/tech-icons/tailwind.svg'
 import PythonIcon from '/assets/tech-icons/python.svg'
+import Me from '/assets/me.png'
 
 import CardHeader from '../components/CardHeader'
 import TechStackItem from '../components/TechStackItem'
@@ -187,8 +188,9 @@ const About = () => {
                 <div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
                     <BentoTilt className='h-[320px] md:col-span-2 about-card'>
                         <Card className=''>
-                            <CardHeader title='Hello' description='me' />
-                            <img src={MongoIcon} alt="What I want to add here" />
+                            <CardHeader title='Hey there!' description="" />
+                            {/* <img src={Me} alt="What I want to add here" className='h-[460px] absolute right-0 -bottom-15'/> */}
+                            <p className='font-circular-web text-lg text-blue-50 px-10'>Hi, I'm Rohan Sivam — a passionate and curious software developer based in Melbourne. I love building meaningful digital experiences, whether it's through mobile apps, web platforms, or backend systems. I'm currently working as a Junior Software Engineer at GRC Ready, where I’m gaining hands-on experience crafting full stack web solutions.</p>
                         </Card>
                     </BentoTilt>
                     <BentoTilt className='h-[320px] p-0 md:col-span-3 about-card'>
@@ -211,78 +213,74 @@ const About = () => {
                                 {hobbies[currentIndex-1]}
                             </h1>
                         {/* <CardHeader title='Beyond the code' description="Here's a little more about my hobbies and interests" className='z-20'/> */}
-                        <div className='relative z-10 h-full w-full overflow-hidden rounded-lg bg-blue-75' id='video-frame'>
-                        <div className="mask-clip-path absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
-                            <VideoPreview>
-                            <div
-                                onClick={handleMiniVdClick}
-                                className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
-                            >
+                            <div className='relative z-10 h-full w-full overflow-hidden rounded-lg bg-blue-75' id='video-frame'>
+                                <div className="mask-clip-path absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
+                                    <VideoPreview>
+                                        <div
+                                            onClick={handleMiniVdClick}
+                                            className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
+                                        >
+                                            <video
+                                            ref={nextVdRef}
+                                            src={getVideoSrc((currentIndex % totalVideos) + 1)}
+                                            loop
+                                            muted
+                                            id="current-video"
+                                            className="size-64 origin-center scale-150 object-cover object-center"
+                                            onLoadedData={handleVideoLoad}
+                                            />
+                                        </div>
+                                    </VideoPreview>
+                                </div>
                                 <video
-                                ref={nextVdRef}
-                                src={getVideoSrc((currentIndex % totalVideos) + 1)}
-                                loop
-                                muted
-                                id="current-video"
-                                className="size-64 origin-center scale-150 object-cover object-center"
-                                onLoadedData={handleVideoLoad}
+                                    ref={nextVdRef}
+                                    src={getVideoSrc(currentIndex)}
+                                    loop
+                                    muted
+                                    id="next-video"
+                                    className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
+                                    onLoadedData={handleVideoLoad}
+                                />
+                                <video
+                                    src={getVideoSrc(
+                                    currentIndex === totalVideos - 1 ? 1 : currentIndex
+                                    )}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    className="absolute left-0 top-0 size-full object-cover object-center"
+                                    onLoadedData={handleVideoLoad}
                                 />
                             </div>
-                            </VideoPreview>
-
-                        </div>
-
-                        <video
-                            ref={nextVdRef}
-                            src={getVideoSrc(currentIndex)}
-                            loop
-                            muted
-                            id="next-video"
-                            className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
-                            onLoadedData={handleVideoLoad}
-                        />
-                        <video
-                            src={getVideoSrc(
-                            currentIndex === totalVideos - 1 ? 1 : currentIndex
-                            )}
-                            autoPlay
-                            loop
-                            muted
-                            className="absolute left-0 top-0 size-full object-cover object-center"
-                            onLoadedData={handleVideoLoad}
-                        />
-    
-                        </div>
-                
                         </Card>
                     </BentoTilt>
                     <BentoTilt className='h-[320px] p-0 flex flex-col col-span-2 about-card'>
                         <Card className=''>
-                        <CardHeader title='I work in Melbourne' description="I graduated from Monash in 2024 with a Bachelor's Degree of Computer Science" className='px-6 pt-6'/>
-                        <div className='relative mt-auto overflow-hidden h-full w-full'>
-                            <div className='absolute -top-20 left-1/2 -translate-x-1/2'>
-                            <Globe
-                                ref={globeRef as React.MutableRefObject<GlobeMethods | undefined>} 
-                                height={600}
-                                width={600}
-                                backgroundColor='rgba(0,0,0,0)'
-                                showAtmosphere
-                                showGraticules
-                                globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
-                                arcsData={arcsData}
-                                arcColor="color"
-                                arcDashLength={() => Math.random()}
-                                arcDashGap={() => Math.random()}
-                                arcDashAnimateTime={() => Math.random() * 4000 + 500}
-                                labelsData={[{
-                                lat: -37.8102, lng: 144.962646,
-                                text: "I'm here",
-                                color: 'white',
-                                size: 20
-                                }]}
-                            />
+                            <CardHeader title='I work in Melbourne' description="" className='px-6 pt-6'/>
+                            <div className='relative mt-auto overflow-hidden h-full w-full'>
+                                <div className='absolute -top-20 left-1/2 -translate-x-1/2'>
+                                    <Globe
+                                        ref={globeRef as React.MutableRefObject<GlobeMethods | undefined>} 
+                                        height={600}
+                                        width={600}
+                                        backgroundColor='rgba(0,0,0,0)'
+                                        showAtmosphere
+                                        showGraticules
+                                        globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
+                                        arcsData={arcsData}
+                                        arcColor="color"
+                                        arcDashLength={() => Math.random()}
+                                        arcDashGap={() => Math.random()}
+                                        arcDashAnimateTime={() => Math.random() * 4000 + 500}
+                                        labelsData={[{
+                                        lat: -37.8102, lng: 144.962646,
+                                        text: "I'm here",
+                                        color: 'white',
+                                        size: 20
+                                        }]}
+                                    />
+                                </div>
                             </div>
-                        </div>
                         </Card> 
                     </BentoTilt> 
                 </div>

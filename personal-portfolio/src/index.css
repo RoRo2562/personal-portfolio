@@ -38,13 +38,13 @@ body {
 }
 
 .about-section {
- background: black;
+ background: #282a39;
 }
 
 
 @layer base {
   :root {
-    --color-primary: black;
+    --color-primary: #282a39;
     --color-secondary: #F0EFEB;
     --color-tertiary: #3A5BA7;
     --color-quaternary: #5F74B1;

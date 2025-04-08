@@ -28,7 +28,6 @@ const Navbar = () => {
   const navContainerRef = useRef(null);
 
   const { y: currentScrollY } = ReactUse.useWindowScroll();
-  console.log(currentScrollY); 
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -61,7 +60,6 @@ const Navbar = () => {
       setIsNavVisible(true);
       navContainerRef.current.classList.add("floating-nav");
     }
-    console.log(currentScrollY)
     setLastScrollY(currentScrollY);
   }, [currentScrollY, lastScrollY]);
 
