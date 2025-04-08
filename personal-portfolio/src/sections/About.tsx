@@ -182,7 +182,7 @@ const About = () => {
   return (
     <section className='py-20 about-section'>
         <div className='container mx-auto'>
-            <SectionHeader title='About Me' eyebrow='A little bit about me and how I create cool things' description='Always striving to do better' />
+            <SectionHeader title='Always striving to do better' eyebrow='About Me' description='and how I create cool things'/>
             <div className='mt-20 flex flex-col gap-8'>
                 <div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
                     <BentoTilt className='h-[320px] md:col-span-2 about-card'>

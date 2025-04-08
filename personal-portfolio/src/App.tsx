@@ -17,10 +17,10 @@ const App = () => {
           <Navbar />
         </div>
         <div className='wrapper' ref={wrapperRef}>
-          <div id="hero" className='z-10'>
+          <div id="home" className='z-10'>
                 <Hero scrollContainer={wrapperRef} />
           </div>
-          <div className='relative z-30 bg-primary'>
+          <div id='about' className='relative z-30 bg-primary'>
             <About />
           </div>
           <div id="experience" className='relative z-30 bg-primary'>

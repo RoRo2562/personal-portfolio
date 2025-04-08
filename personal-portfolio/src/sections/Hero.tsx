@@ -2,6 +2,7 @@ import Position from '../components/Position'
 import HouseCanvas from '../components/HouseCanvas'
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { riseWithFade } from '../utils/motion';
 
 
 const Hero = ({scrollContainer}) => {
@@ -38,12 +39,12 @@ const mobileCloudGroups = [
   { y: useTransform(scrollY, [0, 700], [0, -150]), clouds: ['cloud_7.svg'] },
 ]
   return (
-    <section className="parallax hero-section h-[100vh]">
+    <motion.section className="parallax hero-section h-[100vh]" initial='initial' animate='animate'>
       <div className='parallax__content absolute top-[18%] sm:top-[16%] lg:top-[24%] w-full mx-auto lg:pl-[10vh] lg:pr-[30vh] xl:pl-20 xl:pr-72 2xl:px-20 3xl:px-20 flex flex-col lg:flex-row items-start z-10'>
         <div className="flex-1 lg:mb-0">
-          <h1 className='font-medium text-white text-[40px] xs:text-[70px] sm:text-[68px] md:text-[80px] lg:text-[100px] 2xl:text-[140px] leading-[110px] 2xl:leading-[160px]'>
+          <motion.h1 className='special-font uppercase font-zentry font-medium text-white text-[40px] xs:text-[70px] sm:text-[68px] md:text-[80px] lg:text-[100px] 2xl:text-[140px] leading-[110px] 2xl:leading-[160px]' variants={riseWithFade}>
             ROHAN <br className='hidden xl:block' /> SIVAM
-          </h1>
+          </motion.h1>
           {/* <h1 className='font-medium text-white text-[40px] xs:text-[70px] sm:text-[68px] md:text-[80px] lg:text-[100px] 2xl:text-[140px] leading-[110px] 2xl:leading-[160px]'>
             SIVAM
           </h1> */}
@@ -55,13 +56,6 @@ const mobileCloudGroups = [
           </div>
         </div>
       </div>
-      {/* <motion.img style={{ y: starsY }} className="parallax__stars" src="./parallax/cloud_4.svg" alt="" />
-      <motion.img style={{ y: starsY }} className="parallax__stars" src="./parallax/cloud_6.svg" alt="" />
-      <motion.img style={{ y: planetsY }} className="parallax__planets" src="./parallax/cloud_2.svg" alt="" />
-      <motion.img style={{ y: mountain1Y }} className="parallax__mountain1" src="./parallax/cloud_3.svg" alt="" />
-      <motion.img style={{ y: mountain2Y }} className="parallax__mountain2" src="./parallax/cloud_7.svg" alt="" />
-      <motion.img style={{ y: craterY }} className="parallax__crater" src="./parallax/cloud_8.svg" alt="" />
-      <motion.img style={{ y: mountain2Y }} className="parallax__mountain2" src="./parallax/cloud_5.svg" alt="" /> */}
       {cloudGroups.map((group, i) =>
         group.clouds.map((src, j) => (
           <motion.img
@@ -73,7 +67,6 @@ const mobileCloudGroups = [
           />
         ))
       )}
-
       {mobileCloudGroups.map((group, i) =>
         group.clouds.map((src, j) => (
           <motion.img
@@ -85,15 +78,8 @@ const mobileCloudGroups = [
           />
         ))
       )}
-
-      {/* <img className="parallax__stars" src="./parallax/clouds_1.svg" alt="" />
-      <img className="parallax__planets mobile-bottom" src="./parallax/clouds_2.svg" alt="" />
-      <img className="parallax__mountain1" src="./parallax/clouds_3.svg" alt="" />
-      <img className="parallax__mountain2 mobile-bottom" src="./parallax/clouds_4.svg" alt="" />
-      <img className="parallax__crater" src="./parallax/clouds_5.svg" alt="" /> */}
-
       <HouseCanvas />
-    </section>
+    </motion.section>
 
   )
 }

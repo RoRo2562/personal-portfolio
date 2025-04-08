@@ -31,30 +31,13 @@
 
 body {
   background: #0d1321; /* Fallback color */
-  /* height: 30vh;
-  width: 100%;
-
-  align-items: center;
-  background-image: url('assets/nightsky.jpg');
-  overflow: hidden;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; */
 }
 
 .hero-section {
-  /* height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center; */
   background: linear-gradient(to bottom, #3A5BA7, #5F74B1, #826FA0, #9B5E85);
 }
 
 .about-section {
-
-  /* background: linear-gradient(to bottom,#9B5E85, #826FA0,#3A5BA7, #011825  , #011825, #011825, #011825 , #011825, #011825 , #011825, #011825, #011825 , #011825, #011825);
-} */
  background: black;
 }
 
@@ -254,88 +237,6 @@ body {
   }
 }
 
-@keyframes mulShdSpin {
-  0%, 100% {
-    box-shadow: 0em -2.6em 0em 0em #ffffff,
-                1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-                2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-                1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-                0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-                -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-                -2.6em 0em 0 0em rgba(255, 255, 255, 0.5),
-                -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
-  }
-  12.5% {
-    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7),
-                1.8em -1.8em 0 0em #ffffff,
-                2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-                1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-                0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-                -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-                -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-                -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5);
-  }
-  25% {
-    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5),
-                1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7),
-                2.5em 0em 0 0em #ffffff,
-                1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-                0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-                -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-                -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-                -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  37.5% {
-    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-                1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5),
-                2.5em 0em 0 0em rgba(255, 255, 255, 0.7),
-                1.75em 1.75em 0 0em #ffffff,
-                0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-                -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-                -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-                -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  50% {
-    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-                1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-                2.5em 0em 0 0em rgba(255, 255, 255, 0.5),
-                1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7),
-                0em 2.5em 0 0em #ffffff,
-                -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-                -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-                -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  62.5% {
-    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-                1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-                2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-                1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5),
-                0em 2.5em 0 0em rgba(255, 255, 255, 0.7),
-                -1.8em 1.8em 0 0em #ffffff,
-                -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-                -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  75% {
-    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-                1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-                2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-                1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-                0em 2.5em 0 0em rgba(255, 255, 255, 0.5),
-                -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7),
-                -2.6em 0em 0 0em #ffffff,
-                -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  87.5% {
-    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-                1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-                2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-                1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-                0em 2.5em 0 0em rgba(255, 255, 255, 0.5),
-                -2.6em 0em 0 0em rgba(255, 255, 255, 0.7),
-                -1.8em -1.8em 0 0em #ffffff;
-  }
-}
-
 @keyframes indicator-line {
   0% {
     height: 4px;
@@ -431,16 +332,37 @@ body {
 @keyframes appear {
   from{
     opacity: 0;
+    /* transform: translateX(0px); */
     transform: scale(0.5);
   }
   to{
     opacity: 1;
-    transform: scale(1);
+    /* transform: translateX(0px); */
+    transform: scale(1)
+  }
+}
+
+@keyframes slide {
+  from{
+    opacity: 0;
+    transform: translateY(-100px);
+    /* transform: scale(0.5); */
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0px);
+    /* transform: scale(1) */
   }
 }
 
 .about-card{
   animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+
+.header-text{
+  animation: slide linear;
   animation-timeline: view();
   animation-range: entry 0% cover 30%;
 }

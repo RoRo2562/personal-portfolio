@@ -11,10 +11,10 @@ export const SectionHeader = ({
             <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 text-transparent bg-clip-text text-center">
                 {title}
             </p>
-            <h2 className="font-serif text-3xl md:text-5xl text-center mt-6">
+            <h2 className="special-font uppercase font-zentry font-black text-4xl sm:right-10 md:text-6xl text-center mt-6 header-text">
                 {eyebrow}
             </h2>
-            <p className="text-center md:text-xl text-white/60 mt-4 max-w-md mx-auto">
+            <p className="uppercase text-center md:text-xl text-white/60 mt-4 max-w-md mx-auto">
                 {description}
             </p>
 
