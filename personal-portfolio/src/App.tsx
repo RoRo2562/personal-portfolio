@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Navbar from "./sections/Navbar"
 import Hero from './sections/Hero'
 import About from './sections/About'
@@ -7,34 +7,54 @@ import Projects from './sections/Projects'
 import Grid from './sections/Grid'
 import { BrowserRouter } from "react-router";
 import Contact from './sections/Contact'
+import { motion, useInView } from 'framer-motion'
 
 const App = () => {
+  const aboutRef = useRef(null);
+  const experienceRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contactRef = useRef(null);
+
+  const aboutInView = useInView(aboutRef, { margin: "-40% 0px -40% 0px" });
+  const experienceInView = useInView(experienceRef, { margin: "-40% 0px -40% 0px" });
+  const projectsInView = useInView(projectsRef, { margin: "-40% 0px -40% 0px" });
+  const contactInView = useInView(contactRef, { margin: "-40% 0px -40% 0px" });
+
+  const [bgColor, setBgColor] = useState("#000");
+
+  useEffect(() => {
+    if (aboutInView) setBgColor("#282a39");
+    else if (experienceInView) setBgColor("#282a39");
+    else if (projectsInView) setBgColor("#f5f8ff");
+    else if (contactInView) setBgColor("#f5f8ff");
+  }, [aboutInView, experienceInView, projectsInView, contactInView]);
+
   const wrapperRef = useRef(null);
   return (
     <BrowserRouter>
-      <div className='relative z-0 bg-primary'>
-        <div>
-          <Navbar />
-        </div>
-        <div className='wrapper' ref={wrapperRef}>
-          <div id="home" className='z-10'>
-                <Hero scrollContainer={wrapperRef} />
+      <motion.div
+        style={{ backgroundColor: bgColor }}
+        className="relative z-0 transition-colors duration-700"
+      >
+        <Navbar />
+        <div className="wrapper" ref={wrapperRef}>
+          <div id="home" className="z-10">
+            <Hero scrollContainer={wrapperRef} />
           </div>
-          <div id='about' className='relative z-30 bg-primary'>
+          <div id="about" ref={aboutRef} className="relative z-30 min-h-screen">
             <About />
           </div>
-          <div id="experience" className='relative z-30 bg-primary'>
-              <Experience />
+          <div id="experience" ref={experienceRef} className="relative z-30 min-h-screen">
+            <Experience />
           </div>
-          <div id="projects" className='relative z-30 bg-primary'>
-              < Projects />
+          <div id="projects" ref={projectsRef} className="relative z-30 min-h-screen">
+            <Projects />
           </div>
-          <div id="contact" className='relative z-30 bg-primary'>
-              {/* < Projects /> */}
-              <Contact />
+          <div id="contact" ref={contactRef} className="relative z-30 min-h-screen">
+            <Contact />
           </div>
         </div>
-      </div>
+      </motion.div>
 
     </BrowserRouter>
   )

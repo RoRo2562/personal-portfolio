@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Globe, { GlobeMethods } from 'react-globe.gl'
-import Button from '../components/Button'
 import { SectionHeader } from '../components/SectionHeader'
 import Card from '../components/Card'
 
@@ -18,7 +17,6 @@ import MongoIcon from '/assets/tech-icons/mongodb.svg'
 import NodeIcon from '/assets/tech-icons/nodejs.svg'
 import TailwindIcon from '/assets/tech-icons/tailwind.svg'
 import PythonIcon from '/assets/tech-icons/python.svg'
-import Me from '/assets/me.png'
 
 import CardHeader from '../components/CardHeader'
 import TechStackItem from '../components/TechStackItem'
@@ -151,7 +149,7 @@ const About = () => {
       }
     );
   
-    const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
+    const getVideoSrc = (index:number) => `videos/hero-${index}.mp4`;
     // const [hasCopied, setHasCopied] = useState(false)
     const globeRef = useRef<GlobeMethods | null>(null);
     // // Generate random arcs data

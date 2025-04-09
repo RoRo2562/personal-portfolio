@@ -1,13 +1,8 @@
 import React, { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { myProjects } from '../constants'
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-// import { Canvas } from '@react-three/fiber';
-// import { Center, OrbitControls } from '@react-three/drei';
-// import CanvasLoader from '../components/CanvasLoader';
-// import DemoComputer from '../components/DemoComputer';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform, motion, animate } from "framer-motion";
+import { SectionHeader } from '../components/SectionHeader';
+import { containerVariants, fadeInElements } from '../utils/motion';
 
 const projectCount = myProjects.length;
 
@@ -15,15 +10,21 @@ const Projects = () => {
     const projects = [
       {
         title: "FitHub",
-        src: "/project-assets/fithub.jpg"
+        src: "/project-assets/fithub.jpg",
+        tags: ['Swift','Firebase','Core Data'],
+        desc: 'A full-featured iOS app (Swift, SwiftUI) enabling users to track nutrition and create custom workout plans.'
       },
       {
         title: "Food Reviewing Platform",
-        src: "/project-assets/moneats.png"
+        src: "/project-assets/moneats.png",
+        tags: ['Java','Kotlin','SQLite'],
+        desc: 'A full-featured iOS app (Swift, SwiftUI) enabling users to track nutrition and create custom workout plans.'
       },
       {
         title: "Package Management system",
-        src: "/project-assets/fithub.jpg"
+        src: "/project-assets/fithub.jpg",
+        tags: ['Angular','Javascript','Node JS','MongoDB',],
+        desc: 'A full-featured iOS app (Swift, SwiftUI) enabling users to track nutrition and create custom workout plans.'
       },
     ]
     const [selectedProject, setSelectedProject] = useState(0);
@@ -47,51 +48,45 @@ const Projects = () => {
   
     return (
       <div className="relative">
+        
         {/* Sticky top section */}
-        <div className="sticky top-0 h-screen z-0 pointer-events-none">
-          <div className="flex h-full justify-between gap-[5%] p-[10%] text-white">
-            {/* Image */}
-            <div className="relative w-[40%]">
-              <img
-                src={projects[selectedProject].src}
-                alt="Project"
-                className="object-cover w-full h-full"
-              />
-            </div>
-  
-            {/* Left Column */}
-            <div className="w-[20%] text-[1.6vw] flex items-start">
-              <p>Designing thoughtful user experiences</p>
-            </div>
-  
-            {/* Right Column with Framer Motion animation */}
-            <motion.div
-              className="w-[20%] text-[1vw] relative"
-              style={{
-                y: yRange, // Animate vertical position based on scroll progress
-              }}
-            >
-              <p>
-                I specialize in designing thoughtful user experiences that combine
-                aesthetics with usability to enhance digital interactions and leave a
-                lasting impression.
-              </p>
-            </motion.div>
-          </div>
-        </div>
+        <SectionHeader title='' eyebrow='Projects' description="some cool work I've done" className='text-[#676c82]'/>
+
   
         {/* Scrollable content */}
-        <div className="mt-[100vh] p-[10%] text-white flex flex-col gap-10 z-20">
+        <motion.div
+          className="p-[10%] text-[#676c82] flex flex-col gap-4 z-20"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }} // triggers when 20% of section is visible
+        >
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
-              onMouseOver={() => handleMouseOver(index)} // Ensure selectedProject only updates if necessary
-              className="w-full uppercase text-[3vw] border-b border-white flex justify-end cursor-pointer"
+              onMouseOver={() => handleMouseOver(index)}
+              className="w-full uppercase text-[4vw] lg:text-[3vw] font-bold border-b border-black grid grid-cols-1 justify-start cursor-pointer relative min-h-[120px] sm:flex-col"
+              variants={fadeInElements} // now handled via parent
             >
-              <h2 className="mt-[40px] mb-[20px] cursor-default">{project.title}</h2>
-            </div>
+              <h2 className="mb-[10%] lg:mb-[5%] cursor-default">{project.title}</h2>
+
+              <div className="grid grid-cols-1 xl:grid-cols-2 mb-[2%]">
+                <p className='text-[#676c82] font-medium text-[3vw] xl:text-lg col-span-1 align-bottom'>{project.desc}</p>
+                <div className='col-span-1 flex xl:justify-end gap-2 max-h-[50px]'>
+                  {project.tags.map((tag, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="inline-flex items-center py-[1%] px-4 border border-[#826fa0]/20 rounded-full text-[2vw] lg:text-sm"
+                    >
+                      <p>{tag}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
       </div>
     );
 

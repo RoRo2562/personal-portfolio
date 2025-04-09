@@ -104,3 +104,28 @@ export const textVariant = (delay:number) => {
 
     }
   }
+
+  export const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+  
+  export const fadeInElements = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: [0.6, 0.01, 0.05, 0.95],
+        duration: 0.6,
+      },
+    },
+  };
+  

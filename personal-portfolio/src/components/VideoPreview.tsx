@@ -8,7 +8,7 @@ export const VideoPreview = ({ children }) => {
   const contentRef = useRef(null); // Reference for the inner content
 
   // Handles mouse movement over the container
-  const handleMouseMove = ({ clientX, clientY, currentTarget }) => {
+  const handleMouseMove = ({ clientX, clientY, currentTarget }:{clientX:number,clientY:number,currentTarget:HTMLElement}) => {
     const rect = currentTarget.getBoundingClientRect(); // Get dimensions of the container
 
     const xOffset = clientX - (rect.left + rect.width / 2); // Calculate X offset

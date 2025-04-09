@@ -1,20 +1,17 @@
 import {VerticalTimeline,VerticalTimelineElement} from 'react-vertical-timeline-component';
 import {motion} from 'framer-motion'
-
-import React from 'react'
 import { styles } from "../styles";
 import { experiences } from "../constants";
 import SectionWrapper from "../hoc/SectionWrapper"
 import { textVariant } from "../utils/motion";
-import { div } from 'framer-motion/client';
 import "react-vertical-timeline-component/style.min.css";
 
 const ExperienceCard = ({ experience }) => {
   return (
-    <VerticalTimelineElement
+    <VerticalTimelineElement className='text-[#f5f8ff]'
       contentStyle={{
         background: "rgba(0, 0, 0, 0.2)",
-        color: "#fff",
+        color: '#f5f8ff',
       }}
       contentArrowStyle={{ borderRight: "7px solid  #232631" }}
       date={experience.date}
@@ -24,13 +21,13 @@ const ExperienceCard = ({ experience }) => {
           <img
             src={experience.icon}
             alt={experience.company_name}
-            className='w-[80%] h-[80%] object-contain'
+            className='w-[80%] h-[80%] object-contain text-[#f5f8ff]'
           />
         </div>
       }
     >
       <div>
-        <h3 className='text-white text-[24px] font-bold'>{experience.title}</h3>
+        <h3 className='text-[#f5f8ff] text-[24px] font-bold'>{experience.title}</h3>
         <p
           className='text-secondary text-[16px] font-semibold'
           style={{ margin: 0 }}
@@ -43,7 +40,7 @@ const ExperienceCard = ({ experience }) => {
         {experience.points.map((point, index) => (
           <li
             key={`experience-point-${index}`}
-            className='text-white-100 text-[14px] pl-1 tracking-wider'
+            className='text-[#f5f8ff] text-[14px] pl-1 tracking-wider'
           >
             {point}
           </li>
@@ -55,7 +52,7 @@ const ExperienceCard = ({ experience }) => {
 const Experience = () => {
   return (
     <>
-    <motion.div variants={textVariant()}>
+    <motion.div variants={textVariant()} className='text-[#f5f8ff]'>
         <p className={styles.sectionSubText}>What I have done so far</p>
         <h2 className={styles.sectionHeadText}>Work Experience</h2>
     </motion.div>
