@@ -359,6 +359,7 @@ body {
   animation: appear linear;
   animation-timeline: view();
   animation-range: entry 0% cover 20%;
+  animation-delay: 1;
 }
 
 .header-text{

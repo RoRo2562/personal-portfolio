@@ -1,4 +1,26 @@
+import { useEffect, useState } from "react"
+
 const Contact = () => {
+
+    const [time,setTime] = useState(new Date())
+    useEffect(() =>{
+        const timer = setInterval(() =>{
+            setTime(new Date())
+        },1000);
+
+        return () => {
+            clearInterval(timer);
+        }
+    },[]);
+
+    const formattedTime = time.toLocaleTimeString('en-US',{
+        timeZone:'Australia/Melbourne',
+        hour12:true,
+        hour:'2-digit',
+        minute:'2-digit',
+        second:'2-digit'
+    })
+
   return (
     <section>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 px-[10%]">
@@ -38,8 +60,23 @@ const Contact = () => {
 
                 </form>
             </div>
-            <div className="col-span-1">
-
+            <div className="col-span-1 flex-col text-[#676c82] py-4 pl-4">
+                <div className="flex-col mb-4">
+                    <h1 className="text-xl font-bold font-zentry uppercase py-2">Contact Details</h1>
+                    <p className="py-2">rohan72562@gmail.com</p>
+                    <p className="py-2">+61448706033</p>
+                </div>
+                <div className="flex-col">
+                    <h1 className="text-xl font-bold font-zentry uppercase py-2">My Platforms</h1>
+                    <p className="py-2">LinkedIn</p>
+                    <p className="py-2">GitHub</p>
+                    <p className="py-2">LeetCode</p>
+                </div>
+                <div className="flex-col">
+                    <h1 className="text-xl font-bold font-zentry uppercase py-2">Location</h1>
+                    <p className="py-2">Melbourne, Australia</p>
+                    <p className="py-2">{formattedTime}</p>
+                </div>
             </div>
 
         </div>
