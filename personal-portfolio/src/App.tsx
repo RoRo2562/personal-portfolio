@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Navbar from "./sections/Navbar"
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Experience from './sections/Experience'
 import Projects from './sections/Projects'
-import Grid from './sections/Grid'
 import { BrowserRouter } from "react-router";
 import Contact from './sections/Contact'
 import { motion, useInView } from 'framer-motion'
+import Footer from './sections/Footer'
 
 const App = () => {
   const aboutRef = useRef(null);
@@ -50,10 +50,11 @@ const App = () => {
           <div id="projects" ref={projectsRef} className="relative z-30 min-h-screen">
             <Projects />
           </div>
-          <div id="contact" ref={contactRef} className="relative z-30 min-h-screen">
+          <div id="contact" ref={contactRef} className="relative z-30 ">
             <Contact />
           </div>
         </div>
+        <Footer />
       </motion.div>
 
     </BrowserRouter>

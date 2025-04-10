@@ -106,7 +106,7 @@ const About = () => {
     const [loadedVideos, setLoadedVideos] = useState(0);
   
     const totalVideos = 4;
-    const nextVdRef = useRef(null);
+    const nextVdRef = useRef<HTMLVideoElement | null>(null);
   
     const handleVideoLoad = () => {
       setLoadedVideos((prev) => prev + 1);
@@ -135,7 +135,14 @@ const About = () => {
             height: "100%",
             duration: 1,
             ease: "power1.inOut",
-            onStart: () => nextVdRef.current.play(),
+            onStart: () => {
+                // Ensure the play function is called directly without returning a promise
+                if (nextVdRef.current) {
+                    nextVdRef.current.play().catch((error) => {
+                        console.error("Error playing video:", error);
+                    });
+                }
+            },
           });
           gsap.from("#current-video", {
             transformOrigin: "center center",
@@ -192,7 +199,6 @@ const About = () => {
                     <BentoTilt className='h-[320px] md:col-span-2 about-card'>
                         <Card className=''>
                             <CardHeader title='Hey there!' description="" />
-                            {/* <img src={Me} alt="What I want to add here" className='h-[460px] absolute right-0 -bottom-15'/> */}
                             <p className='font-circular-web text-lg text-blue-50 px-10 overflow-auto'>I'm Rohan, a passionate and curious software developer based in Melbourne. I love building meaningful digital experiences, whether it's through mobile apps, web platforms, or backend systems. I'm currently working as a Junior Software Engineer at GRC Ready, where I’m gaining hands-on experience crafting full stack web solutions.</p>
                         </Card>
                     </BentoTilt>
@@ -215,7 +221,17 @@ const About = () => {
                             <h1 className="special-font uppercase font-zentry font-black text-2xl sm:right-10 sm:text-2xl md:text-3xl lg:text-3xl absolute bottom-5 right-10 z-40 text-blue-75">
                                 {hobbies[currentIndex-1]}
                             </h1>
-                        {/* <CardHeader title='Beyond the code' description="Here's a little more about my hobbies and interests" className='z-20'/> */}
+                            
+                            {loading && (
+                                <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
+                                {/* https://uiverse.io/G4b413l/tidy-walrus-92 */}
+                                <div className="three-body">
+                                    <div className="three-body__dot"></div>
+                                    <div className="three-body__dot"></div>
+                                    <div className="three-body__dot"></div>
+                                </div>
+                                </div>
+                            )}
                             <div className='relative z-10 h-full w-full overflow-hidden rounded-lg bg-blue-75' id='video-frame'>
                                 <div className="mask-clip-path absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
                                     <VideoPreview>

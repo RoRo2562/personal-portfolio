@@ -9,24 +9,37 @@ Title: ...Fire in the sky
 Test update
 */
 
-import React from 'react'
+import { JSX } from 'react'
 import { Float, useGLTF } from '@react-three/drei'
+import { Mesh } from 'three/src/Three.js';
+import { GLTF } from 'three-stdlib';
+import { Material } from 'three';
 
-const Houser = (props) => {
-  const { nodes, materials } = useGLTF('/models/house.glb')
+type GLTFResult = GLTF & {
+  nodes: {
+    [key: string]: Mesh;  // Allow any node key as a Mesh
+  };
+  materials: {
+    [key: string]: Material; // Any material key
+  };
+};
+
+const House = (props: JSX.IntrinsicElements['group']) => {
+  const { nodes, materials } = useGLTF('/models/house.glb') as unknown as GLTFResult
   return (
     <Float floatIntensity={0.3}>
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Object_171.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Object_172.geometry} material={materials.PaletteMaterial002} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Object_176.geometry} material={materials.PaletteMaterial003} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Object_177.geometry} material={materials.PaletteMaterial004} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Object_178.geometry} material={materials.PaletteMaterial005} rotation={[Math.PI / 2, 0, 0]} />
-    </group></Float>
+      <group {...props} dispose={null}>
+        <mesh geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />
+        <mesh geometry={nodes.Object_171.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />
+        <mesh geometry={nodes.Object_172.geometry} material={materials.PaletteMaterial002} rotation={[Math.PI / 2, 0, 0]} />
+        <mesh geometry={nodes.Object_176.geometry} material={materials.PaletteMaterial003} rotation={[Math.PI / 2, 0, 0]} />
+        <mesh geometry={nodes.Object_177.geometry} material={materials.PaletteMaterial004} rotation={[Math.PI / 2, 0, 0]} />
+        <mesh geometry={nodes.Object_178.geometry} material={materials.PaletteMaterial005} rotation={[Math.PI / 2, 0, 0]} />
+      </group>
+    </Float>
   )
 }
 
 useGLTF.preload('/models/house.glb')
 
-export default Houser
+export default House

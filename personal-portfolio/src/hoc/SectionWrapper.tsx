@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { staggerContainer } from "../utils/motion";
 
-const SectionWrapper = (Component, idName) =>
-  function HOC() {
+const SectionWrapper = <T extends React.ComponentType<any>>(Component:T, idName:string) =>
+  function HOC(props: React.ComponentProps<T>) {
     return (
       <motion.section
-        variants={staggerContainer()}
+        variants={staggerContainer(2,0.7)}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.25 }}
@@ -15,7 +15,7 @@ const SectionWrapper = (Component, idName) =>
           &nbsp;
         </span>
 
-        <Component />
+        <Component {...props}/>
       </motion.section>
     );
   };

@@ -28,7 +28,7 @@ export const navLinks = [
   
   
   
-  const experiences = [    
+  const experiences: ExperienceType[] = [    
     {
       title: "Full Stack Software Engineer",
       company_name: "GRC Ready",
@@ -56,6 +56,15 @@ export const navLinks = [
     },
 
   ];
+
+  export type ExperienceType = {
+    title: string;
+    company_name: string;
+    icon: string;
+    iconBg: string;
+    date: string;
+    points: string[];
+  };
   
 
 

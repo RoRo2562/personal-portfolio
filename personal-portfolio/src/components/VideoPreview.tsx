@@ -1,7 +1,11 @@
 import { gsap } from "gsap";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, ReactNode } from "react";
 
-export const VideoPreview = ({ children }) => {
+interface VideoPreviewProps {
+    children: ReactNode; // Define the type of children as ReactNode
+  }
+
+export const VideoPreview = ({ children }:VideoPreviewProps) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const sectionRef = useRef(null); // Reference for the container section

@@ -1,4 +1,4 @@
-import { animate } from "framer-motion";
+
 
 export const textVariant = (delay:number) => {
     return {
