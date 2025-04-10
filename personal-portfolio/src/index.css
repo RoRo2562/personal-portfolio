@@ -30,15 +30,16 @@
 }
 
 body {
-  background: #0d1321; /* Fallback color */
+  background: #326D99; /* Fallback color */
 }
 
 .hero-section {
-  background: linear-gradient(to bottom, #3A5BA7, #5F74B1, #826FA0, #9B5E85);
+  background: linear-gradient(to bottom, #4A90B3, #326D99);
 }
 
 .about-section {
- background: #282a39;
+ background: #1d3557;
+ transition: background 0.5s ease;
 }
 
 
@@ -355,12 +356,12 @@ body {
   }
 }
 
-.about-card{
+/* .about-card{
   animation: appear linear;
   animation-timeline: view();
   animation-range: entry 0% cover 20%;
   animation-delay: 1;
-}
+} */
 
 .header-text{
   animation: slide linear;

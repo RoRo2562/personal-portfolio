@@ -20,11 +20,11 @@ const App = () => {
   const projectsInView = useInView(projectsRef, { margin: "-40% 0px -40% 0px" });
   const contactInView = useInView(contactRef, { margin: "-40% 0px -40% 0px" });
 
-  const [bgColor, setBgColor] = useState("#000");
+  const [bgColor, setBgColor] = useState("#326D99");
 
   useEffect(() => {
-    if (aboutInView) setBgColor("#282a39");
-    else if (experienceInView) setBgColor("#282a39");
+    if (aboutInView) setBgColor("#1d3557");
+    else if (experienceInView) setBgColor("#1d3557");
     else if (projectsInView) setBgColor("#f5f8ff");
     else if (contactInView) setBgColor("#f5f8ff");
   }, [aboutInView, experienceInView, projectsInView, contactInView]);
@@ -39,7 +39,7 @@ const App = () => {
         <Navbar />
         <div className="wrapper" ref={wrapperRef}>
           <div id="home" className="z-10">
-            <Hero scrollContainer={wrapperRef} />
+            <Hero />
           </div>
           <div id="about" ref={aboutRef} className="relative z-30 min-h-screen">
             <About />

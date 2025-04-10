@@ -1,22 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { navLinks } from '../constants'
-import { twMerge } from 'tailwind-merge'
 import * as ReactUse from 'react-use'
 import gsap from 'gsap'
 
-
-
-
-const NavItems = ({className}:{className?:string}) => {
-  return (
-    <nav className='flex gap-1 p-0.5 border border-white/15 rounded-full bg-white/10 backdrop-blur'>
-        {navLinks.map((link)=>(
-                <a href={link.href} key={link.id} className={twMerge('px-8 py-2 rounded-full text-white/70 text-lg font-semibold hover:bg-white/10 hover:text-white transition duration-300',className)} onClick={() =>{}}>
-                    {link.name}
-                    </a>
-        ))}</nav>
-  )
-}
 
 const Navbar = () => {
   // State for toggling audio and visual indicator
@@ -24,8 +10,8 @@ const Navbar = () => {
   const [isIndicatorActive, setIsIndicatorActive] = useState(false);
 
   // Refs for audio and navigation container
-  const audioElementRef = useRef(null);
-  const navContainerRef = useRef(null);
+  const audioElementRef = useRef<HTMLAudioElement | null>(null);
+  const navContainerRef = useRef<HTMLDivElement | null>(null);
 
   const { y: currentScrollY } = ReactUse.useWindowScroll();
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -39,27 +25,31 @@ const Navbar = () => {
 
   // Manage audio playback
   useEffect(() => {
+    const audioRef = audioElementRef.current;
+    if (!audioRef) return;
+  
     if (isAudioPlaying) {
-      audioElementRef.current.play();
+      audioRef.play();
     } else {
-      audioElementRef.current.pause();
+      audioRef.pause();
     }
   }, [isAudioPlaying]);
 
   useEffect(() => {
+    const navRef = navContainerRef.current;
+    if (!navRef) return;
+  
     if (currentScrollY === 0) {
-      // Topmost position: show navbar without floating-nav
       setIsNavVisible(true);
-      navContainerRef.current.classList.remove("floating-nav");
+      navRef.classList.remove("floating-nav");
     } else if (currentScrollY > lastScrollY) {
-      // Scrolling down: hide navbar and apply floating-nav
       setIsNavVisible(false);
-      navContainerRef.current.classList.add("floating-nav");
+      navRef.classList.add("floating-nav");
     } else if (currentScrollY < lastScrollY) {
-      // Scrolling up: show navbar with floating-nav
       setIsNavVisible(true);
-      navContainerRef.current.classList.add("floating-nav");
+      navRef.classList.add("floating-nav");
     }
+  
     setLastScrollY(currentScrollY);
   }, [currentScrollY, lastScrollY]);
 
@@ -104,5 +94,4 @@ const Navbar = () => {
     )
 }
 
-// className = 'bg-white text-gray-900 hover:bg-white/70 hover:text-gray-900'
 export default Navbar

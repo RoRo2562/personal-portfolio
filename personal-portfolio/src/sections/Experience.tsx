@@ -10,7 +10,7 @@ const ExperienceCard = ({ experience }) => {
   return (
     <VerticalTimelineElement className='text-[#f5f8ff]'
       contentStyle={{
-        background: "rgba(0, 0, 0, 0.2)",
+        background: 'rgba(69, 123, 157, 0.4)', /* 40% opacity */
         color: '#f5f8ff',
       }}
       contentArrowStyle={{ borderRight: "7px solid  #232631" }}
@@ -37,7 +37,7 @@ const ExperienceCard = ({ experience }) => {
       </div>
 
       <ul className='mt-5 list-disc ml-5 space-y-2'>
-        {experience.points.map((point, index) => (
+        {experience.points.map((point, index:number) => (
           <li
             key={`experience-point-${index}`}
             className='text-[#f5f8ff] text-[14px] pl-1 tracking-wider'

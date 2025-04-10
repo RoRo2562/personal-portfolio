@@ -1,11 +1,9 @@
-import Position from '../components/Position'
 import HouseCanvas from '../components/HouseCanvas'
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import { riseWithFade } from '../utils/motion';
 
 
-const Hero = ({scrollContainer}) => {
+const Hero = () => {
   const { scrollY } = useScroll();
 
 const cloudGroups = [

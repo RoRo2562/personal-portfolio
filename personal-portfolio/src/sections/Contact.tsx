@@ -23,7 +23,7 @@ const Contact = () => {
 
   return (
     <section>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 px-[10%]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-20 p-8 px-[10%]">
             <div className="md:col-span-2 p-5">
                 <h1 className="special-font uppercase font-zentry font-black text-3xl sm:right-10 sm:text-3xl md:text-4xl lg:text-5xl text-[#676c82]">Let's build something great together!</h1>
                 <form action="" className="mt-12 space-y-4">
@@ -60,7 +60,7 @@ const Contact = () => {
 
                 </form>
             </div>
-            <div className="col-span-1 flex-col text-[#676c82] py-4 pl-4">
+            <div className="col-span-1 flex-col  text-[#676c82] py-4 pl-4">
                 <div className="flex-col mb-4">
                     <h1 className="text-xl font-bold font-zentry uppercase py-2">Contact Details</h1>
                     <p className="py-2">rohan72562@gmail.com</p>
@@ -68,9 +68,22 @@ const Contact = () => {
                 </div>
                 <div className="flex-col">
                     <h1 className="text-xl font-bold font-zentry uppercase py-2">My Platforms</h1>
-                    <p className="py-2">LinkedIn</p>
-                    <p className="py-2">GitHub</p>
-                    <p className="py-2">LeetCode</p>
+                    <div className="py-2 inline-flex gap-2 w-full">
+                        <img src="/contact-assets/linkedin.svg" alt="" className="size-7" />
+                        <a href="https://linkedin.com/in/rohan-sivam" className="relative font-general uppercase after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-[#676c82] after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-[#676c82] cursor-pointer">LinkedIn</a>
+                    </div>
+                    <div className="py-2 inline-flex gap-2 w-full">
+                        <img src="/contact-assets/github.svg" alt="" className="size-7" />
+                        <a href="https://github.com/RoRo2562" className="relative font-general uppercase after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-[#676c82] after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-[#676c82] cursor-pointer">
+                        GitHub
+                        </a>
+                    </div>
+                    <div className="py-2 inline-flex gap-2 w-full">
+                        <img src="/contact-assets/leetcode.svg" alt="" className="size-7" />
+                        <a href="https://leetcode.com/u/RoRo2562/" className="relative font-general uppercase after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-[#676c82] after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-[#676c82] cursor-pointer">
+                        LeetCode
+                        </a>
+                    </div>
                 </div>
                 <div className="flex-col">
                     <h1 className="text-xl font-bold font-zentry uppercase py-2">Location</h1>

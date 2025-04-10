@@ -28,7 +28,7 @@ export const BentoTilt = ({ children, className = "" }) => {
     return (
       <div
         ref={itemRef}
-        className={twMerge(className,'bg-[#3e3c6e]/50 rounded-md relative z-0 overflow-hidden border border-white/20 p-0 transition-transform duration-300 ease-out')}
+        className={twMerge(className,'bg-[#457b9d]/40 rounded-md relative z-0 overflow-hidden border border-white/20 p-0 transition-transform duration-300 ease-out')}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{ transform: transformStyle }}

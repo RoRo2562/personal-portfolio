@@ -26,6 +26,8 @@ import { ScrollTrigger } from "gsap/all";
 
 import VideoPreview from "../components/VideoPreview";
 import { BentoTilt } from '../components/BentoTilt'
+import { containerVariants, fadeInElements } from '../utils/motion';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -180,15 +182,18 @@ const About = () => {
 
   return (
     <section className='py-20 about-section'>
-        <div className='container mx-auto'>
+        <motion.div className='container mx-auto' variants={containerVariants}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.4 }}>
             <SectionHeader title='Always striving to do better' eyebrow='About Me' description='and how I create cool things'/>
             <div className='mt-20 flex flex-col gap-8'>
-                <div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
+                <motion.div className='grid grid-cols-1 md:grid-cols-5 gap-8' variants={fadeInElements} >
                     <BentoTilt className='h-[320px] md:col-span-2 about-card'>
                         <Card className=''>
                             <CardHeader title='Hey there!' description="" />
                             {/* <img src={Me} alt="What I want to add here" className='h-[460px] absolute right-0 -bottom-15'/> */}
-                            <p className='font-circular-web text-lg text-blue-50 px-10'>Hi, I'm Rohan Sivam — a passionate and curious software developer based in Melbourne. I love building meaningful digital experiences, whether it's through mobile apps, web platforms, or backend systems. I'm currently working as a Junior Software Engineer at GRC Ready, where I’m gaining hands-on experience crafting full stack web solutions.</p>
+                            <p className='font-circular-web text-lg text-blue-50 px-10 overflow-auto'>I'm Rohan, a passionate and curious software developer based in Melbourne. I love building meaningful digital experiences, whether it's through mobile apps, web platforms, or backend systems. I'm currently working as a Junior Software Engineer at GRC Ready, where I’m gaining hands-on experience crafting full stack web solutions.</p>
                         </Card>
                     </BentoTilt>
                     <BentoTilt className='h-[320px] p-0 md:col-span-3 about-card'>
@@ -200,8 +205,8 @@ const About = () => {
                             </section>
                         </Card>
                     </BentoTilt>
-                </div>
-                <div className='grid grid-cols-1 md:grid-cols-5 gap-8' >
+                </motion.div>
+                <motion.div className='grid grid-cols-1 md:grid-cols-5 gap-8' variants={fadeInElements}>
                     <BentoTilt className='h-[320px] p-0 flex flex-col col-span-3 about-card'>
                         <Card className=''>
                             <h1 className="special-font uppercase font-zentry font-black text-3xl sm:right-10 sm:text-3xl md:text-5xl lg:text-5xl absolute top-5 left-10 z-40 text-blue-75">
@@ -281,12 +286,9 @@ const About = () => {
                             </div>
                         </Card> 
                     </BentoTilt> 
-                </div>
-                <Card>
-
-                </Card>
+                </motion.div>
             </div>
-        </div>
+        </motion.div>
     </section>
   )
 }

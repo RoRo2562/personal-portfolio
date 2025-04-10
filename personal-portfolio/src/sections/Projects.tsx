@@ -1,10 +1,7 @@
-import React, { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { myProjects } from '../constants'
-import { useScroll, useTransform, motion, animate } from "framer-motion";
+import { useEffect, useState } from 'react'
+import { motion, } from "framer-motion";
 import { SectionHeader } from '../components/SectionHeader';
 import { containerVariants, fadeInElements } from '../utils/motion';
-
-const projectCount = myProjects.length;
 
 const Projects = () => {
     const projects = [
@@ -29,17 +26,12 @@ const Projects = () => {
     ]
     const [selectedProject, setSelectedProject] = useState(0);
 
-    // Get scroll position
-    const { scrollYProgress } = useScroll();
-    const yRange = useTransform(scrollYProgress, [0, 1], [0, 200]); // Adjust range based on how far you want to scroll the text
   
     // Fixing possible infinite loop by ensuring the selectedProject is updated only when needed
-    const handleMouseOver = (index) => {
-      console.log(index)
+    const handleMouseOver = (index:number) => {
       if (index !== selectedProject) {
         setSelectedProject(index); // Only update when index is different
       }
-      console.log(projects[selectedProject].src)
     };
   
     useEffect(() => {
