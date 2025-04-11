@@ -1,10 +1,10 @@
 import {VerticalTimeline,VerticalTimelineElement} from 'react-vertical-timeline-component';
 import {motion} from 'framer-motion'
-import { styles } from "../styles";
 import { experiences, ExperienceType } from "../constants";
 import SectionWrapper from "../hoc/SectionWrapper"
 import { textVariant } from "../utils/motion";
 import "react-vertical-timeline-component/style.min.css";
+import { SectionHeader } from '../components/SectionHeader';
 
 const ExperienceCard = ({ experience }:{experience:ExperienceType}) => {
   return (
@@ -53,8 +53,7 @@ const Experience = () => {
   return (
     <>
     <motion.div variants={textVariant(0.7)} className='text-[#f5f8ff]'>
-        <p className={styles.sectionSubText}>What I have done so far</p>
-        <h2 className={styles.sectionHeadText}>Work Experience</h2>
+        <SectionHeader title='My professional Journey' eyebrow='Work Experience' description=''/>
     </motion.div>
     <div className='mt-20 flex flex-col'>
       <VerticalTimeline>

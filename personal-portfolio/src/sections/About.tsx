@@ -103,20 +103,16 @@ const About = () => {
     const [hasClicked, setHasClicked] = useState(false);
   
     const [loading, setLoading] = useState(true);
-    const [loadedVideos, setLoadedVideos] = useState(0);
   
     const totalVideos = 4;
-    const nextVdRef = useRef<HTMLVideoElement | null>(null);
-  
-    const handleVideoLoad = () => {
-      setLoadedVideos((prev) => prev + 1);
-    };
-  
-    useEffect(() => {
-      if (loadedVideos === totalVideos - 1) {
+    const mainVideoRef = useRef<HTMLVideoElement | null>(null);
+    const nextVideoRef = useRef<HTMLVideoElement | null>(null);
+    const previewVideoRef = useRef<HTMLVideoElement | null>(null);
+
+    const handleMainVideoLoad = () => {
         setLoading(false);
-      }
-    }, [loadedVideos]);
+      };
+  
   
     const handleMiniVdClick = () => {
       setHasClicked(true);
@@ -124,39 +120,35 @@ const About = () => {
       setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
     };
   
-    useGSAP(
-      () => {
-        if (hasClicked) {
+    useGSAP(() => {
+        if (hasClicked && nextVideoRef.current) {
           gsap.set("#next-video", { visibility: "visible" });
+      
+          nextVideoRef.current.play().catch((error) => {
+            console.error("Error playing video:", error);
+          });
+      
           gsap.to("#next-video", {
             transformOrigin: "center center",
             scale: 1,
             width: "100%",
             height: "100%",
             duration: 1,
-            ease: "power1.inOut",
-            onStart: () => {
-                // Ensure the play function is called directly without returning a promise
-                if (nextVdRef.current) {
-                    nextVdRef.current.play().catch((error) => {
-                        console.error("Error playing video:", error);
-                    });
-                }
-            },
+            ease: "power1.inOut"
           });
+      
           gsap.from("#current-video", {
             transformOrigin: "center center",
             scale: 0,
             duration: 1.5,
-            ease: "power1.inOut",
+            ease: "power1.inOut"
           });
         }
-      },
-      {
+      }, {
         dependencies: [currentIndex],
         revertOnUpdate: true,
-      }
-    );
+      });
+      
   
     const getVideoSrc = (index:number) => `videos/hero-${index}.mp4`;
     // const [hasCopied, setHasCopied] = useState(false)
@@ -198,8 +190,8 @@ const About = () => {
                 <motion.div className='grid grid-cols-1 md:grid-cols-5 gap-8' variants={fadeInElements} >
                     <BentoTilt className='h-[320px] md:col-span-2 about-card'>
                         <Card className=''>
-                            <CardHeader title='Hey there!' description="" />
-                            <p className='font-circular-web text-lg text-blue-50 px-10 overflow-auto'>I'm Rohan, a passionate and curious software developer based in Melbourne. I love building meaningful digital experiences, whether it's through mobile apps, web platforms, or backend systems. I'm currently working as a Junior Software Engineer at GRC Ready, where I’m gaining hands-on experience crafting full stack web solutions.</p>
+                            <CardHeader title='Hey there!' description="" className='pl-10 md:py-4'/>
+                            <p className='font-circular-web text-[3.5vw] md:text-[1.5vw] xl:text-[1vw] text-blue-50 px-10 overflow-auto'>I'm Rohan, a passionate and curious software developer based in Melbourne. I love building meaningful digital experiences, whether it's through mobile apps, web platforms, or backend systems. I'm currently working as a Junior Software Engineer at GRC Ready, where I’m gaining hands-on experience crafting full stack web solutions.</p>
                         </Card>
                     </BentoTilt>
                     <BentoTilt className='h-[320px] p-0 md:col-span-3 about-card'>
@@ -213,7 +205,7 @@ const About = () => {
                     </BentoTilt>
                 </motion.div>
                 <motion.div className='grid grid-cols-1 md:grid-cols-5 gap-8' variants={fadeInElements}>
-                    <BentoTilt className='h-[320px] p-0 flex flex-col col-span-3 about-card'>
+                    <BentoTilt className='h-[320px] p-0 md:col-span-3 about-card'>
                         <Card className=''>
                             <h1 className="special-font uppercase font-zentry font-black text-3xl sm:right-10 sm:text-3xl md:text-5xl lg:text-5xl absolute top-5 left-10 z-40 text-blue-75">
                                 My Hobbies
@@ -223,13 +215,12 @@ const About = () => {
                             </h1>
                             
                             {loading && (
-                                <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
-                                {/* https://uiverse.io/G4b413l/tidy-walrus-92 */}
-                                <div className="three-body">
+                                <div className="absolute inset-0 z-[100] flex items-center justify-center bg-blue-75/60">
+                                    <div className="three-body">
                                     <div className="three-body__dot"></div>
                                     <div className="three-body__dot"></div>
                                     <div className="three-body__dot"></div>
-                                </div>
+                                    </div>
                                 </div>
                             )}
                             <div className='relative z-10 h-full w-full overflow-hidden rounded-lg bg-blue-75' id='video-frame'>
@@ -240,40 +231,45 @@ const About = () => {
                                             className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
                                         >
                                             <video
-                                            ref={nextVdRef}
+                                            ref={previewVideoRef}
                                             src={getVideoSrc((currentIndex % totalVideos) + 1)}
                                             loop
                                             muted
+                                            playsInline
+                                            preload='metadata'
                                             id="current-video"
-                                            className="size-64 origin-center scale-150 object-cover object-center"
-                                            onLoadedData={handleVideoLoad}
+                                            className="size-64 origin-center object-cover object-center rounded-lg"
                                             />
                                         </div>
                                     </VideoPreview>
                                 </div>
                                 <video
-                                    ref={nextVdRef}
+                                    ref={nextVideoRef}
                                     src={getVideoSrc(currentIndex)}
                                     loop
+                                    playsInline
                                     muted
+                                    preload='metadata'
                                     id="next-video"
                                     className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
-                                    onLoadedData={handleVideoLoad}
                                 />
                                 <video
+                                    ref={mainVideoRef}
                                     src={getVideoSrc(
                                     currentIndex === totalVideos - 1 ? 1 : currentIndex
                                     )}
                                     autoPlay
                                     loop
+                                    playsInline
                                     muted
+                                    preload='metadata'
                                     className="absolute left-0 top-0 size-full object-cover object-center"
-                                    onLoadedData={handleVideoLoad}
+                                    onLoadedData={handleMainVideoLoad}
                                 />
                             </div>
                         </Card>
                     </BentoTilt>
-                    <BentoTilt className='h-[320px] p-0 flex flex-col col-span-2 about-card'>
+                    <BentoTilt className='h-[320px] p-0 flex flex-col md:col-span-2 about-card'>
                         <Card className=''>
                             <CardHeader title='I work in Melbourne' description="" className='px-6 pt-6'/>
                             <div className='relative mt-auto overflow-hidden h-full w-full'>
